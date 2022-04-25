@@ -1,2 +1,2 @@
 # nguyenhongthe.dev
-Make nguyenhongthe.dev whith python
+Make nguyenhongthe.dev whith python!
