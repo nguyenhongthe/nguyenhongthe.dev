@@ -125,16 +125,16 @@ export const Header: React.FC<Props> = ({ project, views }) => {
 					</div>
 
 					<div className="mx-auto max-w-2xl mt-6 text-xs text-zinc-100">
-						{project.date ? (
-							<time dateTime={new Date(project.date).toISOString()}>
-								<span aria-hidden="true"> &rarr; </span>
-								{Intl.DateTimeFormat(undefined, {
-									dateStyle: "medium",
-								}).format(new Date(project.date))}
-							</time>
-							) : (
-								<span>SOON</span>
-								)}
+					{project.date !== undefined ? (
+						<time dateTime={new Date(project.date).toISOString()}>
+							<span aria-hidden="true"> &rarr; </span>
+							{Intl.DateTimeFormat(undefined, {
+								dateStyle: "long",
+							}).format(new Date(project.date))}
+						</time>
+						) : (
+							<span>SOON</span>
+							)}
 					</div>
 
 				</div>
