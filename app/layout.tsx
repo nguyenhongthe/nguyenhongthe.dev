@@ -1,6 +1,6 @@
 import "../global.css";
-import { Inter } from "@next/font/google";
-import LocalFont from "@next/font/local";
+import { Inter } from "next/font/google";
+import LocalFont from "next/font/local";
 import { Metadata } from "next";
 import { Analytics } from "./components/analytics";
 
@@ -11,14 +11,15 @@ export const metadata: Metadata = {
 		default: "nguyenhongthe.dev",
 		template: "%s | nguyenhongthe.dev",
 	},
-	description: "Programmer, Web Developer, Trader, Blogger, Writer at vietdev.com and founder of vnspring.com",
-	metadataBase: new URL(metadata_base || '/'),
+	description:
+		"Programmer, Web Developer, Trader, Blogger, Writer at vietdev.com and founder of vnspring.com",
+	metadataBase: new URL(metadata_base || "/"),
 	alternates: {
-	  canonical: '/',
-	  languages: {
-		'en-US': '/en-US',
-		'vi-VN': '/vi',
-	  },
+		canonical: "/",
+		languages: {
+			"en-US": "/en-US",
+			"vi-VN": "/vi",
+		},
 	},
 	openGraph: {
 		title: "nguyenhongthe.dev",
@@ -52,7 +53,8 @@ export const metadata: Metadata = {
 		card: "summary_large_image",
 	},
 	icons: {
-		shortcut: "https://nguyenhongthe.net/content/images/size/w256h256/2020/05/favicon-1.png",
+		shortcut:
+			"https://nguyenhongthe.net/content/images/size/w256h256/2020/05/favicon-1.png",
 	},
 };
 const inter = Inter({

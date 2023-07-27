@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://nguyenhongthe.dev
+
+# Sitemaps
+Sitemap: https://nguyenhongthe.dev/sitemap.xml

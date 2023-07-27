@@ -8,6 +8,7 @@ type Props = {
 		url?: string;
 		title: string;
 		description: string;
+		date: string;
 		repository?: string;
 	};
 
@@ -76,7 +77,10 @@ export const Header: React.FC<Props> = ({ project, views }) => {
 								} `}
 							/>
 						</Link>
-						<Link target="_blank" href="https://github.com/nguyenhongthe/nguyenhongthe.dev">
+						<Link
+							target="_blank"
+							href="https://github.com/nguyenhongthe"
+						>
 							<Github
 								className={`w-6 h-6 duration-200 hover:font-medium ${
 									isIntersecting
@@ -119,6 +123,20 @@ export const Header: React.FC<Props> = ({ project, views }) => {
 							))}
 						</div>
 					</div>
+
+					<div className="mx-auto max-w-2xl mt-6 text-xs text-zinc-100">
+						{project.date ? (
+							<time dateTime={new Date(project.date).toISOString()}>
+								<span aria-hidden="true"> &rarr; </span>
+								{Intl.DateTimeFormat(undefined, {
+									dateStyle: "medium",
+								}).format(new Date(project.date))}
+							</time>
+							) : (
+								<span>SOON</span>
+								)}
+					</div>
+
 				</div>
 			</div>
 		</header>
