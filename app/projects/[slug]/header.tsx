@@ -2,13 +2,14 @@
 import { ArrowLeft, Eye, Github, Twitter } from "lucide-react";
 import Link from "next/link";
 import React, { useEffect, useRef, useState } from "react";
+import type { IsoDateTimeString } from 'contentlayer/core'
 
 type Props = {
 	project: {
 		url?: string;
 		title: string;
 		description: string;
-		date: string;
+		date?: IsoDateTimeString;
 		repository?: string;
 	};
 
@@ -114,6 +115,19 @@ export const Header: React.FC<Props> = ({ project, views }) => {
 						</p>
 					</div>
 
+					<div className="mx-auto max-w-2xl mt-6 text-xs text-zinc-100">
+						{project.date !== undefined ? (
+							<time dateTime={new Date(project.date).toISOString()}>
+								<span aria-hidden="true"> &rarr; </span>
+								{Intl.DateTimeFormat(undefined, {
+									dateStyle: "long",
+								}).format(new Date(project.date))}
+							</time>
+							) : (
+								<span>SOON</span>
+								)}
+					</div>					
+
 					<div className="mx-auto mt-10 max-w-2xl lg:mx-0 lg:max-w-none">
 						<div className="grid grid-cols-1 gap-y-6 gap-x-8 text-base font-semibold leading-7 text-white sm:grid-cols-2 md:flex lg:gap-x-10">
 							{links.map((link) => (
@@ -122,19 +136,6 @@ export const Header: React.FC<Props> = ({ project, views }) => {
 								</Link>
 							))}
 						</div>
-					</div>
-
-					<div className="mx-auto max-w-2xl mt-6 text-xs text-zinc-100">
-					{project.date !== undefined ? (
-						<time dateTime={new Date(project.date).toISOString()}>
-							<span aria-hidden="true"> &rarr; </span>
-							{Intl.DateTimeFormat(undefined, {
-								dateStyle: "long",
-							}).format(new Date(project.date))}
-						</time>
-						) : (
-							<span>SOON</span>
-							)}
 					</div>
 
 				</div>
