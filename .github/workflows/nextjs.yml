@@ -24,44 +24,51 @@ concurrency:
   group: "pages"
   cancel-in-progress: false
 
+env:
+  PNPM_VERSION: 8.6.10
+  NODE_MAINTENANCE_VERSION: 16
+  NODE_LTS_VERSION: 18.16.1
+
 jobs:
   # Build job
   build:
     runs-on: ubuntu-latest
+    env:
+      UPSTASH_REDIS_REST_URL: ${{ secrets.UPSTASH_REDIS_REST_URL }}
+      UPSTASH_REDIS_REST_TOKEN: ${{ secrets.UPSTASH_REDIS_REST_TOKEN }}
+      NEXT_PUBLIC_METADATA_BASE: ${{ secrets.NEXT_PUBLIC_METADATA_BASE }}
+
     steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-      - name: Install pnpm
-        run: npm install -g pnpm
-      - name: Install @pnpm/plugin-commands-ci
-        run: pnpm install -g @pnpm/plugin-commands-ci
-      - name: Detect package manager
-        id: detect-package-manager
-        run: |
-          if [ -f "${{ github.workspace }}/pnpm-lock.yaml" ]; then
-            echo "manager=pnpm" >> $GITHUB_ENV
-            echo "command=ci" >> $GITHUB_ENV
-            echo "runner=pnpx" >> $GITHUB_ENV
-            exit 0
-          elif [ -f "${{ github.workspace }}/yarn.lock" ]; then
-            echo "manager=yarn" >> $GITHUB_ENV
-            echo "command=install" >> $GITHUB_ENV
-            echo "runner=yarn" >> $GITHUB_ENV
-            exit 0
-          elif [ -f "${{ github.workspace }}/package-lock.json" ]; then
-            echo "manager=npm" >> $GITHUB_ENV
-            echo "command=ci" >> $GITHUB_ENV
-            echo "runner=npx --no-install" >> $GITHUB_ENV
-            exit 0
-          else
-            echo "Unable to determine package manager"
-            exit 1
-          fi
-      - name: Setup Node
+      - name: Setup node
         uses: actions/setup-node@v3
         with:
-          node-version: "16"
-          cache: ${{ env.manager }}
+          node-version: ${{ env.NODE_LTS_VERSION }}
+          check-latest: true
+
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 25
+
+      - name: Install pnpm
+        run: npm i -g pnpm@${PNPM_VERSION}
+
+      - id: get-store-path
+        run: echo STORE_PATH=$(pnpm store path) >> $GITHUB_OUTPUT
+
+      - uses: actions/cache@v3
+        timeout-minutes: 5
+        id: cache-pnpm-store
+        with:
+          path: ${{ steps.get-store-path.outputs.STORE_PATH }}
+          key: pnpm-store-${{ hashFiles('pnpm-lock.yaml') }}
+          restore-keys: |
+            pnpm-store-
+            pnpm-store-${{ hashFiles('pnpm-lock.yaml') }}
+
+      - run: pnpm install
+
+      - run: pnpm run build
+
       - name: Setup Pages
         uses: actions/configure-pages@v3
         with:
@@ -76,20 +83,11 @@ jobs:
           path: |
             .next/cache
           # Generate a new cache whenever packages or source files change.
-          key: ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json', '**/yarn.lock') }}-${{ hashFiles('**.[jt]s', '**.[jt]sx') }}
+          key: ${{ runner.os }}-nextjs-${{ hashFiles('**/pnpm-lock.yaml', '**/package-lock.json', '**/yarn.lock') }}-${{ hashFiles('**.[jt]s', '**.[jt]sx', '**.[jm]s') }}
           # If source files changed but packages didn't, rebuild from a prior cache.
           restore-keys: |
-            ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json', '**/yarn.lock') }}-
-      - name: Install dependencies
-        run: ${{ env.runner }} ${{ env.command }}
-      - name: Build with Next.js
-        run: ${{ env.runner }} next build
-      - name: Static HTML export with Next.js
-        run: ${{ env.runner }} next export
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v2
-        with:
-          path: ./out
+            ${{ runner.os }}-nextjs-${{ hashFiles('**/pnpm-lock.yaml', '**/package-lock.json', '**/yarn.lock') }}-
+
 
   # Deployment job
   deploy:
