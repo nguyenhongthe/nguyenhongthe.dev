@@ -3,30 +3,32 @@ import { Inter } from "next/font/google";
 import LocalFont from "next/font/local";
 import { Metadata } from "next";
 import { Analytics } from "./components/analytics";
+import * as process from "process";
 
 const metadata_base = process.env.NEXT_PUBLIC_METADATA_BASE;
+const metadate_canonical = process.env.NEXT_PUBLIC_METADATA_CANONICAL;
 
 export const metadata: Metadata = {
 	title: {
-		default: "nguyenhongthe.dev",
+		default: "Nguyen Hong The Dev",
 		template: "%s | nguyenhongthe.dev",
 	},
 	description:
 		"Programmer, Web Developer, Trader, Blogger, Writer at vietdev.com and founder of vnspring.com",
 	metadataBase: new URL(metadata_base || "/"),
 	alternates: {
-		canonical: "/",
+		canonical: metadate_canonical,
 		languages: {
 			"en-US": "/en-US",
 			"vi-VN": "/vi",
 		},
 	},
 	openGraph: {
-		title: "nguyenhongthe.dev",
+		title: "Nguyen Hong The Dev",
 		description:
 			"Programmer, Web Developer, Trader, Blogger, Writer at vietdev.com and founder of vnspring.com",
 		url: "https://nguyenhongthe.dev",
-		siteName: "nguyenhongthe.dev",
+		siteName: "Nguyen Hong The Dev",
 		images: [
 			{
 				url: "https://nguyenhongthe.net/content/images/2020/05/hacking-2.png",
@@ -49,7 +51,7 @@ export const metadata: Metadata = {
 		},
 	},
 	twitter: {
-		title: "Nguyen Hong The",
+		title: "Nguyen Hong The Dev",
 		card: "summary_large_image",
 	},
 	icons: {
@@ -75,8 +77,8 @@ export default function RootLayout({
 	return (
 		<html lang="en" className={[inter.variable, calSans.variable].join(" ")}>
 			<head>
-				<Analytics />
-			</head>
+				<Analytics /><title>Nguyen Hong The Dev</title>
+            </head>
 			<body
 				className={`bg-black ${
 					process.env.NODE_ENV === "development" ? "debug-screens" : undefined
