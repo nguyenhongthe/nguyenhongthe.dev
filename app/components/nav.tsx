@@ -38,7 +38,7 @@ export const Navigation: React.FC = () => {
 							href="https://www.nguyenhongthe.me"
 							target="_blank"
 							className="duration-200 text-zinc-400 hover:text-zinc-100"
-							>
+						>
 							About
 						</Link>
 						<Link
