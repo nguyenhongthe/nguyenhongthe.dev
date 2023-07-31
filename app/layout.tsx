@@ -3,21 +3,19 @@ import { Inter } from "next/font/google";
 import LocalFont from "next/font/local";
 import { Metadata } from "next";
 import { Analytics } from "./components/analytics";
-import * as process from "process";
 
 const metadata_base = process.env.NEXT_PUBLIC_METADATA_BASE;
-const metadate_canonical = process.env.NEXT_PUBLIC_METADATA_CANONICAL;
+const metadata_canonical = process.env.NEXT_PUBLIC_METADATA_CANONICAL;
 
 export const metadata: Metadata = {
 	title: {
 		default: "Nguyen Hong The Dev",
 		template: "%s | nguyenhongthe.dev",
 	},
-	description:
-		"Programmer, Web Developer, Trader, Blogger, Writer at vietdev.com and founder of vnspring.com",
+	description: "Programmer, Web Developer, Trader, Blogger, Writer at vietdev.com and founder of vnspring.com",
 	metadataBase: new URL(metadata_base || "/"),
 	alternates: {
-		canonical: metadate_canonical,
+		canonical: metadata_canonical,
 		languages: {
 			"en-US": "/en-US",
 			"vi-VN": "/vi",
@@ -77,8 +75,9 @@ export default function RootLayout({
 	return (
 		<html lang="en" className={[inter.variable, calSans.variable].join(" ")}>
 			<head>
-				<Analytics /><title>Nguyen Hong The Dev</title>
-            </head>
+				<Analytics />
+				<title>Nguyen Hong The Dev</title>
+			</head>
 			<body
 				className={`bg-black ${
 					process.env.NODE_ENV === "development" ? "debug-screens" : undefined

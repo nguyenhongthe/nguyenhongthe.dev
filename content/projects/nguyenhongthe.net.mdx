@@ -1,77 +1,45 @@
 ---
 title: Nguyễn Hồng Thế Blog
-description: Life's, stories, thoughts and ideas.
+description: Life's, Stories, Thoughts, Ideas and Dev.
 repository: nguyenhongthe/nguyenhongthe.net
 url: https://nguyenhongthe.net
 date: "2013-11-14"
 published: true
   
 ---
-A minimal library for access control. It is designed to be used together with opaque access tokens by providing a simple interface to define roles with different access permissions and verifying requests to resources.
 
-- Fully typed
-- Zero dependencies
-- Serializable to store in a database
+## Introduction
 
-## Install
+**Nguyen Hong The Blog** - a personal project of mine. This website is where I share about various topics in life, including stories, thoughts, creative ideas, and articles related to information technology and web programming.
 
-```sh-session
-npm i @chronark/access
-```
+## Topics of "Nguyen Hong The Blog"
 
-## Usage
+### Dev
 
-```ts
-import { AccessControl, Role } from "@chronark/access";
+The Dev page of this project focuses on sharing general tips and experiences in the field of information technology and web programming. I will post articles about new technologies, updates, and how to address common issues in the development of applications and websites.
 
-/**
- * Define all your resources and their access patterns
- *
- * key => resource
- * value => array of access types
- */
-type Statements = {
-  user: ["read", "write", "dance"];
-  team: ["read", "write"];
-};
+### Ideas
 
-/**
- * Create an access control instance and pass the Statements type to enjoy full
- * type safety
- */
-const ac = new AccessControl<Statements>();
+On the Ideas page, I aim to bring innovative, diverse, and unconventional ideas about various aspects of life. Limitless thoughts, from unique perspectives to groundbreaking ideas that can change lives.
 
-/**
- * Now you can define one or more roles by specifying the access permissions
- *
- * This is already fully typed and typescript will let you know if you try to
- * use anything, that is not defined in the Statements type.
- */
-const role = ac.newRole({
-  user: ["read", "write"],
-  team: ["read"],
-});
+### Life's
 
-/**
- * Simulate storing and retrieving the role in a database
- *
- * The idea here is, that you can store permissions alongside an API token.
- * Now, when you verify the token, you can also verify the access permissions.
- */
-const serialized = role.toString();
+The Life's page contains shares about my personal life and experiences. I want to capture emotions, journeys, and precious lessons that life has bestowed upon me.
 
-/**
- * Note how you can pass in the Statements type again, to get full type safety
- */
-const recovered = Role.fromString<Statements>(serialized);
+### Stories
 
-/**
- * Validate the role by specifying the resource and the required access
- *
- * everything is fully typed
- */
-const res = recovered.authorize({"team", ["read"]});
+On the Stories page, you will find special stories and memorable moments in life. I want to share remarkable experiences and profound stories that I have encountered.
 
-// res.success => boolean
-// res.error => string | undefined provides a reason for failure
-```
+### Thoughts
+
+The Thoughts page contains my personal thoughts, viewpoints, and emotions about life and the world around us. I hope these shares can spark discussions and reflections on important issues.
+
+## Contact and Support
+
+If you wish to get in touch or contribute your opinions, please use the contact information below:
+
+- Name: Nguyen Hong The
+- Email: hello@nguyenhongthe.net
+- GitHub: [github.com/nguyenhongthe](https://github.com/nguyenhongthe)
+
+Thank you for visiting **Nguyen Hong The Blog**. I hope you find useful information and feel inspired by my shares.
