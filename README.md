@@ -1,3 +1,5 @@
+![Nguyen Hong The Dev](https://raw.githubusercontent.com/nguyenhongthe/nguyenhongthe.dev/main/screenshot.png)
+
 <div align="center">
     <a href="https://nguyenhongthe.dev"><h1 align="center">nguyenhongthe.dev</h1></a>
 

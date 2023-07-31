@@ -15,7 +15,6 @@ const nextConfig = {
     appDir: true,
     mdxRs: true
   },
-  distDir: 'build',
   trailingSlash: true,
   assetPrefix: isProd ? `https://cdn.${domain}` : undefined,
   async redirects () {
