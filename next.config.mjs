@@ -16,7 +16,7 @@ const nextConfig = {
     mdxRs: true
   },
   trailingSlash: true,
-  assetPrefix: isProd ? `https://cdn.${domain}` : undefined,
+  // assetPrefix: isProd ? `https://cdn.${domain}` : undefined,
   async redirects () {
     return [
       {
