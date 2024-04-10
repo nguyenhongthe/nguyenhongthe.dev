@@ -12,7 +12,8 @@ export const metadata: Metadata = {
 		default: "Nguyen Hong The Dev",
 		template: "%s | nguyenhongthe.dev",
 	},
-	description: "Programmer, Web Developer, Trader, Blogger, Writer at vietdev.com and founder of vnspring.com",
+	description:
+		"Hi, my name is Nguyen Hong The, I'm building serverless and open source solutions at vnspring.com",
 	metadataBase: new URL(metadata_base || "/"),
 	alternates: {
 		canonical: metadata_canonical,
@@ -24,7 +25,7 @@ export const metadata: Metadata = {
 	openGraph: {
 		title: "Nguyen Hong The Dev",
 		description:
-			"Programmer, Web Developer, Trader, Blogger, Writer at vietdev.com and founder of vnspring.com",
+			"Hi, my name is Nguyen Hong The, I'm building serverless and open source solutions at vnspring.com",
 		url: "https://nguyenhongthe.dev",
 		siteName: "Nguyen Hong The Dev",
 		images: [
@@ -34,7 +35,7 @@ export const metadata: Metadata = {
 				height: 1080,
 			},
 		],
-		locale: "en-US",
+		locale: "vi-VN",
 		type: "website",
 	},
 	robots: {

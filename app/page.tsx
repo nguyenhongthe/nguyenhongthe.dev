@@ -41,22 +41,11 @@ export default function Home() {
 					source solutions at{" "}
 					<Link
 						target="_blank"
-						href="https://vietdev.com"
-						className="underline duration-500 hover:text-zinc-300"
-					>
-						Vietdev Studio
-					</Link>
-
-					<br />
-					and working on{" "}
-					<Link
-						target="_blank"
 						href="https://vnspring.com"
 						className="underline duration-500 hover:text-zinc-300"
 					>
-						VN Spring
+						VN Spring.
 					</Link>{" "}
-					at night.
 				</h2>
 			</div>
 		</div>
