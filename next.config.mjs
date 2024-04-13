@@ -1,4 +1,6 @@
 import { withContentlayer } from "next-contentlayer";
+import nextTranslate from "next-translate-plugin";
+
 const isProd = process.env.NODE_ENV === "production";
 const domain = process.env.NEXT_PUBLIC_METADATA_BASE || "nguyenhongthe.dev";
 
@@ -42,4 +44,4 @@ const nextConfig = {
 	},
 };
 
-export default withContentlayer(nextConfig);
+export default withContentlayer(nextTranslate(nextConfig));
