@@ -1,3 +1,22 @@
 {
-    "test_common": "Thử nghiệm chung"
+    "test_common": "Thử nghiệm chung",
+    "contact_title": "Liên hệ",
+    "contact_subtitle": "Chúng tôi sẽ trả lời bạn trong vòng 24 giờ.",
+    "contact_form": "Hoặc điền vào mẫu dưới đây",
+    "contact_name": "Họ và tên",
+    "contact_company": "Công ty",
+    "contact_email": "Địa chỉ Email",
+    "contact_phone": "Số điện thoại",
+    "contact_formtitle": "Tiêu đề",
+    "contact_message": "Lời nhắn",
+    "contact_submit": "Gửi đi",
+    "contact_name_placeholder": "Nhập họ và tên của bạn.",
+    "contact_email_placeholder": "Nhập địa chỉ email của bạn.",
+    "contact_phone_placeholder": "Nhập số điện thoại của bạn.",
+    "contact_title_placeholder": "Một con số cụ thể sẽ giúp chúng tôi dễ hình dung hơn về quy mô dự án.",
+    "contact_message_placeholder": "Nhập mô tả chi tiết về dự án của bạn hoặc những thử thách bạn đang gặp phải...",
+    "contact_rules_agree": "Bằng cách gửi đi điều này, bạn đồng ý với",
+    "privacy_policy": "Chính sách bảo mật",
+    "terms_of_services": "Điều khoản & dịch vụ",
+    "and_common": "và"
 }

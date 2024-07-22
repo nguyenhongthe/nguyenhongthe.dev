@@ -1,36 +1,32 @@
-import "../global.css";
-import { Inter } from "next/font/google";
+import "../global.css"
+import {Inter} from "next/font/google";
 import LocalFont from "next/font/local";
-import { Metadata } from "next";
-import { Analytics } from "./components/analytics";
-
-const metadata_base = process.env.NEXT_PUBLIC_METADATA_BASE;
-const metadata_canonical = process.env.NEXT_PUBLIC_METADATA_CANONICAL;
+import {Metadata} from "next";
+import {Providers} from "./providers";
+import {defaultOgImage, siteDescription, siteName, siteUrlPrefix} from '@/constrains'
 
 export const metadata: Metadata = {
 	title: {
 		default: "Nguyen Hong The Dev",
-		template: "%s | nguyenhongthe.dev",
+		template: `%s | ${siteName}`,
 	},
-	description:
-		"Hi, my name is Nguyen Hong The, I'm building serverless and open source solutions at vnspring.com",
-	metadataBase: new URL(metadata_base || "/"),
+	description: siteDescription,
+	metadataBase: new URL(siteUrlPrefix || ''),
 	alternates: {
-		canonical: metadata_canonical,
+		canonical: siteUrlPrefix,
 		languages: {
-			"en-US": "/en-US",
+			"en-US": "/en",
 			"vi-VN": "/vi",
 		},
 	},
 	openGraph: {
 		title: "Nguyen Hong The Dev",
-		description:
-			"Hi, my name is Nguyen Hong The, I'm building serverless and open source solutions at vnspring.com",
-		url: "https://nguyenhongthe.dev",
-		siteName: "Nguyen Hong The Dev",
+		description: siteDescription,
+		url: siteUrlPrefix,
+		siteName: siteName,
 		images: [
 			{
-				url: "https://nguyenhongthe.net/content/images/2020/05/hacking-2.png",
+				url: defaultOgImage,
 				width: 1920,
 				height: 1080,
 			},
@@ -50,8 +46,16 @@ export const metadata: Metadata = {
 		},
 	},
 	twitter: {
-		title: "Nguyen Hong The Dev",
+		title: siteName,
+		description: siteDescription,
 		card: "summary_large_image",
+		images: [
+			{
+				url: defaultOgImage,
+				width: 1920,
+				height: 1080,
+			},
+		],
 	},
 	icons: {
 		shortcut:
@@ -68,23 +72,29 @@ const calSans = LocalFont({
 	variable: "--font-calsans",
 });
 
+const manrope = LocalFont({
+	src: "../public/fonts/Manrope-VariableFont_wght.ttf",
+	variable: "--font-manrope",
+});
+
 export default function RootLayout({
 	children,
 }: {
 	children: React.ReactNode;
 }) {
 	return (
-		<html lang="en" className={[inter.variable, calSans.variable].join(" ")}>
-			<head>
-				<Analytics />
-				<title>Nguyen Hong The Dev</title>
-			</head>
+		<html lang="en"
+			  className={[inter.variable, calSans.variable, manrope.variable ].join(" ")}
+		>
 			<body
 				className={`bg-black ${
 					process.env.NODE_ENV === "development" ? "debug-screens" : undefined
 				}`}
 			>
-				{children}
+				{/*{children}*/}
+				<Providers>
+					{children}
+				</Providers>
 			</body>
 		</html>
 	);

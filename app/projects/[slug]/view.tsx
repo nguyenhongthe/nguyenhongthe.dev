@@ -1,17 +1,19 @@
-"use client";
+'use client'
 
-import { useEffect } from "react";
+import { useDebounce } from 'react-use'
+import { getProjectView } from '@/apis/project_api'
 
-export const ReportView: React.FC<{ slug: string }> = ({ slug }) => {
-	useEffect(() => {
-		fetch("/api/incr", {
-			method: "POST",
-			headers: {
-				"Content-Type": "application/json",
-			},
-			body: JSON.stringify({ slug }),
-		});
-	}, [slug]);
+const CalcViews = ({ code }: { code: string }) => {
+	useDebounce(
+		() => {
+			getProjectView(code).then(r => {
+				console.log(`+1 view: ${code}`)
+			}).catch(() => {})
+		},
+		5000,
+		[]
+	)
+	return null
+}
 
-	return null;
-};
+export default CalcViews

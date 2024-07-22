@@ -2,34 +2,35 @@
 import { ArrowLeft, Eye, Github, Twitter } from "lucide-react";
 import Link from "next/link";
 import React, { useEffect, useRef, useState } from "react";
-import type { IsoDateTimeString } from "contentlayer/core";
+import HTMLReactParser from "html-react-parser";
 
-type Props = {
+interface Props {
 	project: {
-		url?: string;
-		title: string;
-		description: string;
-		date?: IsoDateTimeString;
-		repository?: string;
+		projectUrl: string;
+		name: string;
+		descriptionSafe: string;
+		publishedAt: string;
+		source: string;
 	};
 
 	views: number;
-};
+}
+
 export const Header: React.FC<Props> = ({ project, views }) => {
 	const ref = useRef<HTMLElement>(null);
 	const [isIntersecting, setIntersecting] = useState(true);
 
 	const links: { label: string; href: string }[] = [];
-	if (project.repository) {
+	if (project.source) {
 		links.push({
 			label: "GitHub",
-			href: `https://github.com/${project.repository}`,
+			href: project.source,
 		});
 	}
-	if (project.url) {
+	if (project.projectUrl) {
 		links.push({
 			label: "Website",
-			href: project.url,
+			href: project.projectUrl,
 		});
 	}
 	useEffect(() => {
@@ -105,20 +106,23 @@ export const Header: React.FC<Props> = ({ project, views }) => {
 				<div className="mx-auto max-w-7xl px-6 lg:px-8 text-center flex flex-col items-center">
 					<div className="mx-auto max-w-2xl lg:mx-0">
 						<h1 className="text-4xl font-bold tracking-tight text-white sm:text-6xl font-display">
-							{project.title}
+							{project.name}
 						</h1>
 						<p className="mt-6 text-lg leading-8 text-zinc-300">
-							{project.description}
+							{project.descriptionSafe.length > 0
+								? HTMLReactParser(project.descriptionSafe || '')
+								: 'Đang cập nhật...'
+							}
 						</p>
 					</div>
 
 					<div className="mx-auto max-w-2xl mt-6 text-xs text-zinc-100">
-						{project.date !== undefined ? (
-							<time dateTime={new Date(project.date).toISOString()}>
+						{project.publishedAt !== undefined ? (
+							<time dateTime={new Date(project.publishedAt).toISOString()}>
 								<span aria-hidden="true"> &rarr; </span>
 								{Intl.DateTimeFormat(undefined, {
 									dateStyle: "long",
-								}).format(new Date(project.date))}
+								}).format(new Date(project.publishedAt))}
 							</time>
 						) : (
 							<span>SOON</span>
