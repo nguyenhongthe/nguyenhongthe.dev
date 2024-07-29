@@ -14,10 +14,10 @@ const localDomains = [
 ]
 const prodDomains = [
   {
-    hostname: 'static.nguyenhongthe.dev'
+    hostname: 'static.vnscdn.com'
   },
   {
-    hostname: 'media.nguyenhongthe.dev'
+    hostname: 'media.vnscdn.com'
   },
   {
     hostname: 'cdn.nguyenhongthe.dev'
