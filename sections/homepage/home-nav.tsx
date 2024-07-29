@@ -1,7 +1,7 @@
 import Link from "next/link"
 import React from "react"
-import type { MenuProps } from "@/src/types/listing"
-import {getMenuList} from "@/src/apis/menu_api"
+import type { MenuProps } from "@/types/listing"
+import {getMenuList} from "@/apis/menu_api"
 
 const HomeNav: () => Promise<React.JSX.Element> = async () => {
     const navigation: MenuProps[] = await getMenuList()
@@ -11,7 +11,7 @@ const HomeNav: () => Promise<React.JSX.Element> = async () => {
                 {navigation.map((item) => (
                     <Link
                         key={item.order}
-                        href={item.slug}
+                        href={item.url}
                         title={item.name}
                         className='text-sm duration-500 text-zinc-500 hover:text-zinc-300'
                     >

@@ -55,6 +55,7 @@
     "@tailwindcss/typography": "^0.5.12",
     "@types/js-cookie": "^3.0.6",
     "@types/react-google-recaptcha": "^2.1.9",
+    "@types/urijs": "^1.19.25",
     "autoprefixer": "^10.4.19",
     "esbuild": "0.18.20",
     "eslint": "^8.57.0",
