@@ -1,6 +1,6 @@
 import React from 'react'
 
-function NotFoundPage () {
+function NotFoundPage() {
   return (
     <div className='container flex items-center justify-center min-h-screen px-4 mx-auto'>
       <div className='flex items-center justify-center min-h-screen'>

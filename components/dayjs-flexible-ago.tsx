@@ -1,3 +1,5 @@
+// components/dayjs-flexible-ago.tsx
+
 'use client'
 
 import React from 'react'
@@ -12,17 +14,9 @@ const DayjsFlexibleAgo = ({ dateStr }: { dateStr: string }) => {
   // còn nếu lớn hơn 10 ngày thì hiển thị theo định dạng `DD/MM/YYYY HH:mm`
   const t = dayjs(dateStr)
   if (t.isAfter(dayjs().subtract(10, 'day'))) {
-    return (
-      <span>
-        {t.locale('vi').fromNow()}
-      </span>
-    )
+    return <span>{t.locale('vi').fromNow()}</span>
   } else {
-    return (
-      <span>
-        {t.locale('vi').format('DD/MM/YYYY HH:mm')}
-      </span>
-    )
+    return <span>{t.locale('vi').format('DD/MM/YYYY HH:mm')}</span>
   }
 }
 
