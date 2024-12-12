@@ -1,13 +1,10 @@
-const defaultTheme = require("tailwindcss/defaultTheme");
-const { nextui } = require("@nextui-org/react");
+const defaultTheme = require("tailwindcss/defaultTheme")
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
 	content: [
-		"./app/**/*.{js,ts,jsx,tsx}",
-		"./components/mdx-components.tsx",
-		"content/**/*.mdx",
-		"./node_modules/@nextui-org/theme/dist/**/*.{js,ts,jsx,tsx}",
+		"./src/app/**/*.{js,ts,jsx,tsx}",
+		"./src/sections/**/*.{js,ts,jsx,tsx}",
 	],
 
 	theme: {
@@ -106,10 +103,9 @@ module.exports = {
 			},
 		},
 	},
-	darkMode: "class",
+	// darkMode: "class",
 	plugins: [
 		require("@tailwindcss/typography"),
 		require("tailwindcss-debug-screens"),
-		nextui(),
 	],
 };

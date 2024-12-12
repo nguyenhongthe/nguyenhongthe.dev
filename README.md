@@ -3,7 +3,7 @@
 <div align="center">
     <a href="https://nguyenhongthe.dev"><h1 align="center">nguyenhongthe.dev</h1></a>
 
-My personal website, built with [Next.js 15.0.3](https://nextjs.org/), [Tailwind CSS](https://tailwindcss.com/), call API from [Django Rest Framework](https://www.django-rest-framework.org/) and tested with [Vitest](https://vitest.dev/guide/).
+My personal website, built with [Next.js 15](https://nextjs.org/), [Tailwind CSS](https://tailwindcss.com/), call API from [Django Rest Framework](https://www.django-rest-framework.org/) and tested with [Vitest](https://vitest.dev/guide/).
 
 </div>
 
