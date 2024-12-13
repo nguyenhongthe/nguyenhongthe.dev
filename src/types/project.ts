@@ -39,6 +39,7 @@ export interface ProjectDetailProps {
   metaDescription: string
   metaImage: string
   publishedAt: string
+  url: string
   fullUrl: string
   openGraph: {
     title: string

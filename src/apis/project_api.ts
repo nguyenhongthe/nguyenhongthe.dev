@@ -45,7 +45,7 @@ export async function getProjectsFeatured() {
 /**
  * Lấy thông tin chi tiết Project từ API
  */
-export async function getProjectDetail(slug) {
+export async function getProjectDetail(slug: string) {
   try {
     const res = await fetch(
       `${baseAPIURL}/api/nhtdev/project-detail/?slug=${slug}`,
@@ -69,7 +69,7 @@ export async function getProjectDetail(slug) {
 /**
  * API tính view cho project
  */
-export async function getProjectView(code) {
+export async function getProjectView(code: string) {
   try {
     const response = await fetch(`${baseAPIURL}/api/nhtdev/project-calc-views/`, {
       method: 'PUT',
