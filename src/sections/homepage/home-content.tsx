@@ -2,12 +2,12 @@
 
 import Link from 'next/link'
 import React from 'react'
-import Particles from '@/src/components/particles'
-import { getInfoCommon } from '@/apis/info_api'
+import Particles from '../../components/particles'
+import { getInfoCommon } from '../../apis/info_api'
 import { InfoProps } from '@/src/types/info'
 import HTMLReactParser from 'html-react-parser'
 import { MenuProps } from '@/src/types/listing'
-import { getMenuList } from '@/apis/menu_api'
+import { getMenuList } from '../../apis/menu_api'
 
 export default function HomeContent() {
   const [navigation, setNavigation] = React.useState<MenuProps[]>([])
