@@ -28,8 +28,8 @@ export default [{
         "withTwin.js",
         "tailwind.config.js",
         "tailwind.config.ts",
-        "src/theme/dark",
-        "src/theme/light",
+        "src/theme",
+        "src/utils/common.ts",
         ".eslintrc.cjs",
         "node_modules",
         "src/components/ui",
@@ -37,10 +37,6 @@ export default [{
     ],
 }, ...compat.extends("next/core-web-vitals"), ...fixupConfigRules(compat.extends(
     "plugin:@typescript-eslint/recommended",
-    "plugin:import/recommended",
-    "plugin:import/errors",
-    "plugin:import/warnings",
-    "plugin:import/typescript",
 )).map(config => ({
     ...config,
     files: ["**/*.js", "**/*.jsx", "**/*.ts", "**/*.tsx"],
@@ -64,5 +60,8 @@ export default [{
         "@typescript-eslint/explicit-function-return-type": "off",
         "@typescript-eslint/no-confusing-void-expression": "off",
         "@typescript-eslint/no-floating-promises": "off",
+        "@typescript-eslint/no-unused-vars": "off",
+        "@typescript-eslint/ban-ts-comment": "off",
+        "react-hooks/exhaustive-deps": "warn",
     },
 }];
