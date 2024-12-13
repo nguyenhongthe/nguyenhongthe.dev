@@ -78,15 +78,19 @@ export default async function ProjectsPage() {
         {/* Featured Projects Section */}
         <div className='grid grid-cols-1 gap-8 mx-auto lg:grid-cols-2'>
           {mainFeatured && (
-            <Card>
-              <Article project={mainFeatured} views={mainFeatured.numViews} />
+            <Card key={mainFeatured.slug}>
+              <Link href={`/projects/${mainFeatured.slug}`}>
+                <Article project={mainFeatured} views={mainFeatured.numViews} />
+              </Link>
             </Card>
           )}
 
           <div className='flex flex-col w-full gap-8 mx-auto border-t border-gray-900/10 lg:mx-0 lg:border-t-0'>
             {secondaryFeatured.map((project) => (
               <Card key={project.slug}>
-                <Article project={project} views={project.numViews} />
+                <Link href={`/projects/${project.slug}`}>
+                  <Article project={project} views={project.numViews} />
+                </Link>
               </Card>
             ))}
           </div>
@@ -102,7 +106,9 @@ export default async function ProjectsPage() {
                 .filter((_, index) => index % 3 === columnIndex)
                 .map((project) => (
                   <Card key={project.slug}>
-                    <Article project={project} views={project.numViews} />
+                    <Link href={`/projects/${project.slug}`}>
+                      <Article project={project} views={project.numViews} />
+                    </Link>
                   </Card>
                 ))}
             </div>

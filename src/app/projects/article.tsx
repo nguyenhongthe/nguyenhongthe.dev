@@ -3,7 +3,6 @@ import { Eye } from 'lucide-react'
 import DayjsFlexibleAgo from '../../components/dayjs-flexible-ago'
 import React from 'react'
 import HTMLReactParser from 'html-react-parser'
-import Link from 'next/link'
 
 export type ArticleProps = {
   project: ProjectListingProps
@@ -12,7 +11,6 @@ export type ArticleProps = {
 
 export const Article: React.FC<ArticleProps> = ({ project, views }) => {
   return (
-    <Link href={`/projects/${project.slug}`}>
       <article className='p-4 md:p-8'>
         <div className='flex justify-between gap-2 items-center'>
           <span className='text-xs duration-1000 text-zinc-200 group-hover:text-white group-hover:border-zinc-200 drop-shadow-orange'>
@@ -38,6 +36,5 @@ export const Article: React.FC<ArticleProps> = ({ project, views }) => {
           </div>
         )}
       </article>
-    </Link>
   )
 }
