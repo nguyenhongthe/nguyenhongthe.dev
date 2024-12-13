@@ -1,21 +1,49 @@
 // app/projects/[slug]/page.tsx
+import React from 'react'
 import { Header } from '../../../sections/project/header'
 import { getProjectDetail } from '../../../apis/project_api'
-import { ProjectDetailProps } from "@/src/types/project"
+import { type ProjectDetailProps } from '../../../types/project'
 import HTMLReactParser from "html-react-parser"
 import Image from 'next/image'
-import { getMediaURL } from '@/src/utils/common'
+import { getMediaURL } from '../../../utils/common'
 import type { Metadata, ResolvingMetadata } from 'next'
 import { siteName, siteUrlPrefix } from '../../../../constrains'
 import CalcViewsWrapper from "../../../sections/project/client-calc-views"
-import { Footer } from '@/src/sections/project/footer'
+import { Footer } from '../../../sections/project/footer'
 
-interface NextProps {
-    params: { slug: string }
+// Component trang chi tiết dự án
+type Props = {
+    params: Promise<{ slug: string }>
+    searchParams: Promise<{ [key: string]: string | string[] | undefined }>
 }
 
-const ProjectDetail = async ({ params }: NextProps) => {
-    const { slug } = await params
+export async function generateMetadata(
+    { params, searchParams }: Props,
+    parent: ResolvingMetadata
+): Promise<Metadata> {
+    // read route params
+    const slug = (await params).slug
+    const item: ProjectDetailProps = await getProjectDetail(slug)
+
+    const title = item.metaTitle.length > 0 ? item.metaTitle : item.name + ' - ' + siteName
+    return {
+        metadataBase: new URL(siteUrlPrefix),
+        title,
+        description: item.openGraph.description,
+        openGraph: {
+            ...item.openGraph,
+            type: 'website'
+        },
+        alternates: {
+            canonical: item.url
+        }
+    }
+}
+
+
+export default async function Page(
+    { params, searchParams }: Props) {
+    const slug = (await params).slug
     const project: ProjectDetailProps = await getProjectDetail(slug)
 
     return (
@@ -30,8 +58,9 @@ const ProjectDetail = async ({ params }: NextProps) => {
                             <Image
                                 src={getMediaURL(project.featuredImage)}
                                 alt={project.name}
-                                fill
-                                sizes="(max-width: 800px) 100vw, 800px"
+                                width={1200}
+                                height={630}
+                                sizes="(max-width: 1200px) 100vw, 800px"
                                 className="object-cover"
                                 loading="eager"
                                 priority={true}
@@ -43,8 +72,9 @@ const ProjectDetail = async ({ params }: NextProps) => {
                             <Image
                                 src='/img/og.png'
                                 alt={project.name}
-                                fill
-                                sizes="(max-width: 800px) 100vw, 800px"
+                                width={1200}
+                                height={630}
+                                sizes="(max-width: 1200px) 100vw, 800px"
                                 className="object-cover"
                                 loading="eager"
                                 priority={true}
@@ -60,37 +90,7 @@ const ProjectDetail = async ({ params }: NextProps) => {
                     : 'Đang cập nhật...'
                 }
             </article>
-        <Footer project={project} />
+            <Footer project={project} />
         </div>
     )
 }
-
-export default ProjectDetail
-
-export async function generateMetadata (
-    { params }: { params: { slug: string } },
-    parent: ResolvingMetadata
-  ): Promise<Metadata> {
-    const { slug } = await params
-    const item: ProjectDetailProps = await getProjectDetail(slug)
-  
-    const title = item.metaTitle.length > 0 ? item.metaTitle : item.name + ' - ' + siteName
-    const description = item.metaDescription.length > 0 ? item.metaDescription : item.excerptSafe
-    const images = getMediaURL(item.metaImage).length > 0 ? [getMediaURL(item.metaImage)] : []
-    const url = item.fullUrl
-    return {
-      metadataBase: new URL(siteUrlPrefix),
-      title,
-      description,
-      openGraph: {
-        title,
-        description,
-        images,
-        url,
-        type: 'website'
-      },
-      alternates: {
-        canonical: item.fullUrl
-      }
-    }
-  }

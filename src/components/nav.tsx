@@ -2,7 +2,7 @@ import { ArrowLeft } from 'lucide-react'
 import Link from 'next/link'
 import React from 'react'
 import type { MenuProps } from '@/src/types/listing'
-import { getMenuList } from '@/apis/menu_api'
+import { getMenuList } from '../apis/menu_api'
 
 export const Navigation = async() => {
   const navigation: MenuProps[] = await getMenuList()

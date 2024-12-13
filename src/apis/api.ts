@@ -1,7 +1,7 @@
-import Cookies from "js-cookie";
-import { refreshTokenKeyName, tokenKeyName } from "@/constrains";
+import Cookies from 'js-cookie'
+import { refreshTokenKeyName, tokenKeyName } from '../../constrains'
 // @ts-ignore
-import { axiosInstance } from "@/apis/axios_configs";
+import { axiosInstance } from './axios_configs'
 
 // hàm fetcher cho SWR
 export const fetcher = async (url: string): Promise<any> => {
