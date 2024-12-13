@@ -1,0 +1,22 @@
+{
+    "test_common": "Test",
+    "contact_title": "Contact Us",
+    "contact_subtitle": "We are here to help you with your project.",
+    "contact_form": "Or fill the form below to send a message to the out team.",
+    "contact_name": "Name",
+    "contact_company": "Company",
+    "contact_email": "Email",
+    "contact_phone": "Phone",
+    "contact_formtitle": "Title",
+    "contact_message": "Message",
+    "contact_submit": "Send",
+    "contact_name_placeholder": "Enter your full name.",
+    "contact_email_placeholder": "Enter your email address.",
+    "contact_phone_placeholder": "Enter your phone number.",
+    "contact_title_placeholder": "Please enter the range in USD or leave it blank.",
+    "contact_message_placeholder": "Enter a detailed description of your project or the challenge you have...",
+    "contact_rules_agree": "By submitting this, you agree to the",
+    "privacy_policy": "Privacy Policy",
+    "terms_of_services": "Terms of Services",
+    "and_common": "and"
+}
