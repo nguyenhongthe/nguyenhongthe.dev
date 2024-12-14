@@ -2,13 +2,13 @@
 
 'use client'
 
-import React, { useEffect, useState } from 'react'
-import { ArrowLeft, Github, Mail, X } from 'lucide-react'
+import React, {useEffect, useState} from 'react'
+import {ArrowLeft, Github, Mail, X} from 'lucide-react'
 import Link from 'next/link'
-import { Navigation } from '@/src/components/nav'
-import { Card } from '@/src/components/card'
-import type { MenuProps } from '@/src/types/listing'
-import { getMenuList } from '../../apis/menu_api'
+import {Card} from '@/src/components/card'
+import type {MenuProps} from '@/src/types/listing'
+import {getMenuList} from '../../apis/menu_api'
+import {Footer} from "@/src/sections/project/footer";
 
 const socials = [
   {
@@ -31,7 +31,7 @@ const socials = [
   }
 ]
 
-const Contacts: React.FC = () => {
+const Page: React.FC = () => {
   const [navigation, setNavigation] = useState<MenuProps[]>([])
 
   useEffect(() => {
@@ -40,7 +40,7 @@ const Contacts: React.FC = () => {
       setNavigation(navList)
     }
 
-    fetchNavigation()
+    fetchNavigation().then(r => {})
   }, [])
 
   return (
@@ -51,7 +51,7 @@ const Contacts: React.FC = () => {
             {navigation.map((item) => (
               <Link
                 key={item.order}
-                href={`${item.url}`}
+                href={item.url}
                 title={item.name}
                 className='text-sm duration-500 text-zinc-500 hover:text-zinc-300'
               >
@@ -69,7 +69,7 @@ const Contacts: React.FC = () => {
         </div>
       </header>
       <div className='container flex items-center justify-center min-h-screen px-4 mx-auto'>
-        <div className='grid w-full grid-cols-1 gap-8 mx-auto mt-32 sm:mt-0 sm:grid-cols-3 lg:gap-16'>
+        <div className='grid w-full grid-cols-1 gap-8 mx-auto mt-24 sm:mt-0 sm:grid-cols-3 lg:gap-16'>
           {socials.map((s, index) => (
             <Card key={index}>
               <Link
@@ -98,8 +98,9 @@ const Contacts: React.FC = () => {
           ))}
         </div>
       </div>
+      <Footer/>
     </div>
   )
 }
 
-export default Contacts
+export default Page

@@ -1,77 +1,82 @@
+// src/sections/project/footer.tsx
 'use client'
-import { Github, X } from 'lucide-react'
-import Link from 'next/link'
 import React from 'react'
+import { Github, X, Youtube } from 'lucide-react'
+import Link from 'next/link'
+import { siteName, siteUrlPrefix } from '../../../constrains'
 
-interface Props {
-  project: {
-    projectUrl: string;
-    name: string;
-    source: string;
-  };
-}
-
-export const Footer: React.FC<Props> = ({ project }) => {
+// @ts-ignore
+export const Footer: React.FC = () => {
   const links: { label: string; href: string }[] = []
   const linkData = [
-    { label: 'Terms of Service', href: '#' },
-    { label: 'Privacy Policy', href: '#' }
+    { label: 'Terms of Service', href: siteUrlPrefix + '/tos/' },
+    { label: 'Privacy Policy', href: siteUrlPrefix + '/privacy/' },
   ];
 
   linkData.forEach(link => links.push(link));
 
 
   return (
-    <footer className='relative isolate overflow-hidden bg-gradient-to-tl from-black via-zinc-900 to-black'>
-      <div className='container mx-auto py-12 px-6 lg:px-8'>
-        <div className='grid grid-cols-1 md:grid-cols-2 gap-8'>
-          {/* Phần trái - Project Links */}
-          <div>
-            {/* <h3 className='text-xl font-bold text-white mb-4'>{project.name}</h3> */}
-            <div className='flex gap-4'>
-              {links.map((link) => (
-                <Link
-                  target='_blank'
-                  key={link.label}
-                  href={link.href}
-                  className='text-zinc-400 hover:text-zinc-100 duration-200'
-                  rel='noreferrer'
-                >
-                  {link.label}
-                </Link>
-              ))}
+      <footer className='relative isolate overflow-hidden pt-5 mt-5'>
+        <div className='hidden w-full h-px md:block bg-zinc-100'/>
+        <div className='container mx-auto py-12 px-6 lg:px-8'>
+          <div className='grid grid-cols-1 md:grid-cols-2 gap-8'>
+            {/* Phần trái - Project Links */}
+            <div>
+              <h3 className='text-xl font-bold text-white mb-4'>
+                {siteName}
+              </h3>
+              <div className='flex gap-4'>
+                {links.map((link) => (
+                    <Link
+                        key={link.label}
+                        href={link.href}
+                        className='text-zinc-400 hover:text-zinc-100 duration-200'
+                        rel='noreferrer'
+                    >
+                      {link.label}
+                    </Link>
+                ))}
+              </div>
             </div>
-          </div>
 
-          {/* Phần phải - Social Links & Copyright */}
-          <div className='flex flex-col items-start md:items-end'>
-            {/* <div className='flex gap-6 mb-6'>
-              <Link
-                target='_blank'
-                href='https://x.com/realTheNguyen'
-                className='text-zinc-400 hover:text-zinc-100 duration-200'
-                rel='noreferrer'
-              >
-                <X className='w-6 h-6' />
-              </Link>
-              <Link
-                target='_blank'
-                href='https://github.com/nguyenhongthe'
-                className='text-zinc-400 hover:text-zinc-100 duration-200'
-                rel='noreferrer'
-              >
-                <Github className='w-6 h-6' />
-              </Link>
-            </div> */}
-            <div className='text-zinc-400 text-sm'>
-              &copy; {new Date().getFullYear()} Nguyen Hong The Developer. All rights reserved.
+            {/* Phần phải - Social Links & Copyright */}
+            <div className='flex flex-col items-start md:items-end'>
+              <div className='flex gap-6 mb-6'>
+                <Link
+                    target='_blank'
+                    href='https://youtube.com/c/NguyenHongThe'
+                    className='text-zinc-400 hover:text-zinc-100 duration-200'
+                    rel='noreferrer'
+                >
+                  <Youtube className='w-6 h-6'/>
+                </Link>
+                <Link
+                    target='_blank'
+                    href='https://x.com/realTheNguyen'
+                    className='text-zinc-400 hover:text-zinc-100 duration-200'
+                    rel='noreferrer'
+                >
+                  <X className='w-6 h-6'/>
+                </Link>
+                <Link
+                    target='_blank'
+                    href='https://github.com/nguyenhongthe'
+                    className='text-zinc-400 hover:text-zinc-100 duration-200'
+                    rel='noreferrer'
+                >
+                  <Github className='w-6 h-6'/>
+                </Link>
+              </div>
+              <div className='text-zinc-400 text-sm'>
+                &copy; {new Date().getFullYear()} All rights reserved.
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    </footer>
-    // <footer className="bg-black bg-opacity-100">
-    //   <div className="container mx-auto py-8 px-4">
+      </footer>
+      // <footer className="bg-black bg-opacity-100">
+      //   <div className="container mx-auto py-8 px-4">
     //     <nav aria-label="Footer" className="flex flex-wrap justify-center items-center space-x-6 md:space-x-8 mb-4">
     //       <div className='flex gap-4'>
     //          {links.map((link) => (
@@ -139,6 +144,6 @@ export const Footer: React.FC<Props> = ({ project }) => {
     //       &copy; {new Date().getFullYear()} Nguyen Hong The Developer. All rights reserved.
     //     </p>
     //   </div>
-    // </footer>    
+    // </footer>
   )
 }

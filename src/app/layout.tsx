@@ -8,8 +8,8 @@ import {
   siteDescription,
   siteName,
   siteUrlPrefix,
-  siteCanonicalUrlPrefix
 } from '../../constrains'
+import React from "react";
 
 export const metadata: Metadata = {
   title: {
@@ -19,7 +19,7 @@ export const metadata: Metadata = {
   description: siteDescription,
   metadataBase: new URL(siteUrlPrefix || ''),
   alternates: {
-    canonical: siteCanonicalUrlPrefix,
+    canonical: siteUrlPrefix,
     languages: {
       'en-US': '/en',
       'vi-VN': '/vi'

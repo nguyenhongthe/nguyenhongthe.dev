@@ -14,9 +14,13 @@ export const Article: React.FC<ArticleProps> = ({ project, views }) => {
       <article className='p-4 md:p-8'>
         <div className='flex justify-between gap-2 items-center'>
           <span className='text-xs duration-1000 text-zinc-200 group-hover:text-white group-hover:border-zinc-200 drop-shadow-orange'>
-            <time dateTime={new Date(project.publishedAt).toISOString()}>
+            {project.publishedAt ? (
+              <time dateTime={new Date(project.publishedAt).toISOString()}>
               <DayjsFlexibleAgo dateStr={project.publishedAt} />
             </time>
+            ) : (
+              'SOON...'
+            )}
           </span>
           <span className='text-zinc-500 text-xs flex items-center gap-1'>
             <Eye className='w-4 h-4' />
@@ -32,7 +36,7 @@ export const Article: React.FC<ArticleProps> = ({ project, views }) => {
           </div>
         ) : (
           <div className='z-20 mt-4 text-sm duration-1000 text-zinc-400 group-hover:text-zinc-200'>
-            Đang cập nhật...
+            <p>Update coming soon...</p>
           </div>
         )}
       </article>

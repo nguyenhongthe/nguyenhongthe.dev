@@ -38,6 +38,7 @@
     "@types/react-google-recaptcha": "^2.1.9",
     "@types/urijs": "^1.19.25",
     "@types/webpack": "^5.28.5",
+    "@typescript-eslint/parser": "^8.18.0",
     "@vercel/analytics": "^1.4.1",
     "@vitejs/plugin-react": "^4.3.4",
     "antd": "^5.22.4",
