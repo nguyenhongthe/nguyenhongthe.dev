@@ -4,7 +4,7 @@ import Link from 'next/link'
 import React from 'react'
 import Particles from 'src/components/particles'
 import type { Metadata } from 'next'
-import { siteDescription, siteName, siteUrlPrefix, siteCanonicalUrlPrefix } from '../../constrains'
+import { siteDescription, siteName, siteUrlPrefix } from '../../constrains'
 import { getInfoCommon } from '../apis/info_api'
 import { type InfoProps } from 'src/types/info'
 import HTMLReactParser from 'html-react-parser'
@@ -74,7 +74,7 @@ export async function generateMetadata(): Promise<Metadata> {
             images: ogImg ? [ogImg] : [],
         },
         alternates: {
-            canonical: siteCanonicalUrlPrefix
+            canonical: siteUrlPrefix,
         },
         twitter: {
             title,

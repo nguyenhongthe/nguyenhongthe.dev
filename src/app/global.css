@@ -6,4 +6,19 @@
   .text-edge-outline {
     -webkit-text-stroke: 1px rgba(255,255,255,0.3);
   }
-} 
+}
+
+/* Custom Utility Classes cho ul, li và ol */
+@layer utilities {
+  .custom-ul {
+    @apply list-disc list-inside ml-4;
+  }
+
+  .custom-ol {
+    @apply list-decimal list-inside ml-4;
+  }
+
+  .custom-li {
+    @apply mb-1;
+  }
+}

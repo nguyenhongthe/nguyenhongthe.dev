@@ -36,7 +36,13 @@ export async function generateMetadata(
         },
         alternates: {
             canonical: item.url
-        }
+        },
+        twitter: {
+            title,
+            description: item.openGraph.description,
+            card: "summary_large_image",
+            images: item.openGraph.images
+        },
     }
 }
 
@@ -90,7 +96,7 @@ export default async function Page(
                     : 'Đang cập nhật...'
                 }
             </article>
-            <Footer project={project} />
+            <Footer />
         </div>
     )
 }

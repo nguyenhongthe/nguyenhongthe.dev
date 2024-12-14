@@ -63,5 +63,6 @@ export default [{
         "@typescript-eslint/no-unused-vars": "off",
         "@typescript-eslint/ban-ts-comment": "off",
         "react-hooks/exhaustive-deps": "warn",
+        "react/no-unescaped-entities": "off",
     },
 }];
