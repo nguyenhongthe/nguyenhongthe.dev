@@ -2,7 +2,7 @@
 
 import { render, screen, waitFor } from '@testing-library/react'
 import { describe, test, vi, expect } from 'vitest'
-import Contacts from './page'
+import Page from './page'
 
 // Mock getMenuList để tránh thực hiện gọi API thực tế
 vi.mock('../../apis/menu_api', () => ({
@@ -15,7 +15,7 @@ vi.mock('../../apis/menu_api', () => ({
 
 describe('Contact page testing.', () => {
   test('kiểm tra social links có render chính xác không', async () => {
-    render(<Contacts />)
+    render(<Page />)
 
     // Đợi cho tới khi component đã render xong
     await waitFor(() => {

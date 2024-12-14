@@ -1,4 +1,4 @@
-const defaultTheme = require("tailwindcss/defaultTheme")
+import defaultTheme from "tailwindcss/defaultTheme";
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
@@ -104,7 +104,7 @@ module.exports = {
 			},
 		},
 	},
-	// darkMode: "class",
+	darkMode: "class",
 	plugins: [
 		require("@tailwindcss/typography"),
 		require("tailwindcss-debug-screens"),
