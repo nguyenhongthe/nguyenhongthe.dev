@@ -2,13 +2,13 @@
 
 'use client'
 
-import React, {useEffect, useState} from 'react'
-import {ArrowLeft, Github, Mail, X} from 'lucide-react'
+import React, { useEffect, useState } from 'react'
+import { ArrowLeft, Github, Mail, X } from 'lucide-react'
 import Link from 'next/link'
-import {Card} from '@/src/components/card'
-import type {MenuProps} from '@/src/types/listing'
-import {getMenuList} from '../../apis/menu_api'
-import {Footer} from "@/src/sections/project/footer";
+import { Card } from '@/src/components/card'
+import type { MenuProps } from '@/src/types/listing'
+import { getMenuList } from '../../apis/menu_api'
+import { Footer } from '@/src/sections/project/footer'
 
 const socials = [
   {
@@ -98,7 +98,7 @@ const Page: React.FC = () => {
           ))}
         </div>
       </div>
-      <Footer/>
+      <Footer />
     </div>
   )
 }

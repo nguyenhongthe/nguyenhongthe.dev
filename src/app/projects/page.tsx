@@ -5,13 +5,13 @@ import { siteDescription, defaultOgImage, siteUrlPrefix } from '../../../constra
 import { type ProjectFeaturedProps, ProjectListingProps } from '../../types/project'
 import { Card } from '../../components/card'
 import { Article } from './article'
-import {ArrowLeft, Eye} from 'lucide-react'
+import { ArrowLeft, Eye } from 'lucide-react'
 import { getProjectsFeatured, getProjectsListing } from '../../apis/project_api'
 import { type MenuProps } from '../../types/listing'
 import { getMenuList } from '../../apis/menu_api'
-import DayjsFlexibleAgo from "@/src/components/dayjs-flexible-ago";
-import HTMLReactParser from "html-react-parser";
-import {Footer} from "@/src/sections/project/footer";
+import DayjsFlexibleAgo from '@/src/components/dayjs-flexible-ago'
+import HTMLReactParser from 'html-react-parser'
+import { Footer } from '@/src/sections/project/footer'
 
 export default async function ProjectsPage() {
   const navigation: MenuProps[] = await getMenuList()
@@ -47,7 +47,7 @@ export default async function ProjectsPage() {
             {navigation.map((item) => (
               <Link
                 key={item.order}
-                href={`${item.url}`}
+                href={item.url}
                 title={item.name}
                 className='text-sm duration-500 text-zinc-500 hover:text-zinc-300'
               >
@@ -82,46 +82,40 @@ export default async function ProjectsPage() {
           {mainFeatured && (
             <Card key={mainFeatured.slug}>
               <Link href={`/projects/${mainFeatured.slug}`}>
-                {/*<Article project={mainFeatured} views={mainFeatured.numViews}/>*/}
-                {/*    <div className="absolute bottom-4 md:bottom-8">*/}
-                {/*      <p className="hidden text-zinc-200 hover:text-zinc-50 lg:block">*/}
-                {/*        Read more <span aria-hidden="true">&rarr;</span>*/}
-                {/*      </p>*/}
-                {/*    </div>*/}
                 <article className='p-4 md:p-8'>
                   <div className='flex justify-between gap-2 items-center'>
-                  <span
+                    <span
                       className='text-xs duration-1000 text-zinc-200 group-hover:text-white group-hover:border-zinc-200 drop-shadow-orange'>
-                    {mainFeatured.publishedAt ? (
+                      {mainFeatured.publishedAt ? (
                         <time dateTime={new Date(mainFeatured.publishedAt).toISOString()}>
                           <DayjsFlexibleAgo dateStr={mainFeatured.publishedAt}/>
                         </time>
-                    ) : (
+                      ) : (
                         'SOON...'
-                    )}
-                  </span>
-                            <span className='text-zinc-500 text-xs flex items-center gap-1'>
-                    <Eye className='w-4 h-4'/>
-                              {mainFeatured.numViews === undefined ? 0 : mainFeatured.numViews}
-                  </span>
-                          </div>
-                          <h2 className='z-20 text-xl font-medium duration-1000 lg:text-3xl text-zinc-200 group-hover:text-white font-display'>
-                            {mainFeatured.name}
-                          </h2>
-                          {mainFeatured.excerptSafe.length > 0 ? (
-                              <div className='z-20 mt-4 text-sm duration-1000 text-zinc-400 group-hover:text-zinc-200'>
-                                {HTMLReactParser(mainFeatured.excerptSafe || '')}
-                              </div>
-                          ) : (
-                              <div className='z-20 mt-4 text-sm duration-1000 text-zinc-400 group-hover:text-zinc-200'>
-                                <p>Update coming soon...</p>
-                              </div>
-                          )}
-                      <div className="absolute bottom-4 md:bottom-8">
-                        <p className="hidden text-zinc-200 hover:text-zinc-50 lg:block">
-                          Read more <span aria-hidden="true">&rarr;</span>
-                        </p>
-                      </div>
+                      )}
+                    </span>
+                    <span className='text-zinc-500 text-xs flex items-center gap-1'>
+                      <Eye className='w-4 h-4'/>
+                      {mainFeatured.numViews === undefined ? 0 : mainFeatured.numViews}
+                    </span>
+                  </div>
+                  <h2 className='z-20 text-xl font-medium duration-1000 lg:text-3xl text-zinc-200 group-hover:text-white font-display'>
+                    {mainFeatured.name}
+                  </h2>
+                  {mainFeatured.excerptSafe.length > 0 ? (
+                    <div className='z-20 mt-4 text-sm duration-1000 text-zinc-400 group-hover:text-zinc-200'>
+                      {HTMLReactParser(mainFeatured.excerptSafe || '')}
+                    </div>
+                  ) : (
+                    <div className='z-20 mt-4 text-sm duration-1000 text-zinc-400 group-hover:text-zinc-200'>
+                      <p>Update coming soon...</p>
+                    </div>
+                  )}
+                  <div className="absolute bottom-4 md:bottom-8">
+                    <p className="hidden text-zinc-200 hover:text-zinc-50 lg:block">
+                      Read more <span aria-hidden="true">&rarr;</span>
+                    </p>
+                  </div>
                 </article>
               </Link>
             </Card>
@@ -129,11 +123,11 @@ export default async function ProjectsPage() {
 
           <div className='flex flex-col w-full gap-8 mx-auto border-t border-gray-900/10 lg:mx-0 lg:border-t-0'>
             {secondaryFeatured.map((project) => (
-                <Card key={project.slug}>
-                  <Link href={`/projects/${project.slug}`}>
-                    <Article project={project} views={project.numViews}/>
-                  </Link>
-                </Card>
+              <Card key={project.slug}>
+                <Link href={`/projects/${project.slug}`}>
+                  <Article project={project} views={project.numViews}/>
+                </Link>
+              </Card>
             ))}
           </div>
         </div>
@@ -143,17 +137,17 @@ export default async function ProjectsPage() {
         {/* Other Projects Grid */}
         <div className='grid grid-cols-1 gap-4 mx-auto lg:mx-0 md:grid-cols-3'>
           {[0, 1, 2].map((columnIndex) => (
-              <div key={columnIndex} className='grid grid-cols-1 gap-4'>
-                {nonFeaturedProjects
-                    .filter((_, index) => index % 3 === columnIndex)
-                    .map((project) => (
-                        <Card key={project.slug}>
-                          <Link href={`/projects/${project.slug}`}>
-                            <Article project={project} views={project.numViews}/>
-                          </Link>
-                        </Card>
-                    ))}
-              </div>
+            <div key={columnIndex} className='grid grid-cols-1 gap-4'>
+              {nonFeaturedProjects
+                .filter((_, index) => index % 3 === columnIndex)
+                .map((project) => (
+                  <Card key={project.slug}>
+                    <Link href={`/projects/${project.slug}`}>
+                      <Article project={project} views={project.numViews}/>
+                    </Link>
+                  </Card>
+                ))}
+            </div>
           ))}
         </div>
       </div>

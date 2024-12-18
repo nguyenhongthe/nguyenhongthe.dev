@@ -20,14 +20,20 @@ describe('Contact page testing.', () => {
     // Đợi cho tới khi component đã render xong
     await waitFor(() => {
       // Kiểm tra xem các link trong navigation có render ra không
+      // @ts-ignore
       expect(screen.getByText('Home')).toBeInTheDocument()
+      // @ts-ignore
       expect(screen.getByText('About')).toBeInTheDocument()
+      // @ts-ignore
       expect(screen.getByText('Contact')).toBeInTheDocument()
     })
 
     // Kiểm tra xem các social links có render ra đúng không
+    // @ts-ignore
     expect(screen.getByText('@realTheNguyen')).toBeInTheDocument()
+    // @ts-ignore
     expect(screen.getByText('dev@nguyenhongthe.net')).toBeInTheDocument()
+    // @ts-ignore
     expect(screen.getByText('nguyenhongthe')).toBeInTheDocument()
   })
 })

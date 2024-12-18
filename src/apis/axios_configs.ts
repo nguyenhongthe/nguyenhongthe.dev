@@ -50,7 +50,7 @@ axiosInstance.interceptors.response.use(
 				const newAccessToken = response.data.access
 
 				// Lưu access token mới vào cookie
-				// eslint-disable-next-line
+
 				Cookies.set(tokenKeyName, newAccessToken, { expires: 30 })
 
 				// Cập nhật access token trong header của request gốc
