@@ -1,4 +1,5 @@
 // /src/app/layout.tsx
+
 import './global.css'
 import { Inter } from 'next/font/google'
 import LocalFont from 'next/font/local'
@@ -9,12 +10,12 @@ import {
   siteName,
   siteUrlPrefix,
 } from '../../constrains'
-import React from "react";
+import React from 'react'
 
 export const metadata: Metadata = {
   title: {
-    default: 'Nguyen Hong The Dev',
-    template: `%s | ${siteName}`
+    default: siteName,
+    template: '%s'
   },
   description: siteDescription,
   metadataBase: new URL(siteUrlPrefix || ''),
@@ -26,7 +27,7 @@ export const metadata: Metadata = {
     }
   },
   openGraph: {
-    title: 'Nguyen Hong The Dev',
+    title: siteName,
     description: siteDescription,
     url: siteUrlPrefix,
     siteName,
@@ -61,7 +62,8 @@ export const metadata: Metadata = {
         width: 1920,
         height: 1080
       }
-    ]
+    ],
+    site: '@realTheNguyen',
   },
   icons: {
     shortcut:
@@ -86,7 +88,7 @@ const manrope = LocalFont({
 export default function RootLayout({
   children
 }: {
-	children: React.ReactNode;
+  children: React.ReactNode;
 }) {
   return (
     <html
@@ -95,7 +97,7 @@ export default function RootLayout({
     >
       <body
         className={`bg-black ${process.env.NODE_ENV === 'development' ? 'debug-screens' : undefined
-          }`}
+        }`}
       >
         {children}
       </body>

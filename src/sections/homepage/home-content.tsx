@@ -1,4 +1,4 @@
-"use client"
+'use client'
 
 import Link from 'next/link'
 import React from 'react'
@@ -36,26 +36,26 @@ export default function HomeContent() {
         <ul className='flex items-center justify-center gap-4'>
           {navigation.length > 0
             ? navigation.map((item) =>
-                item.url ? (
-                  <Link
-                    key={item.order}
-                    href={item.url}
-                    title={item.name}
-                    className='text-sm duration-500 text-zinc-500 hover:text-zinc-300'
-                  >
-                    {item.name}
-                  </Link>
-                ) : (
-                  <li key={item.order} className='text-sm text-zinc-500'>
-                    {item.name}
-                  </li>
-                )
-              )
-            : (
-                <li className='text-sm text-zinc-500'>
-                  Chưa có liên kết điều hướng
+              item.url ? (
+                <Link
+                  key={item.order}
+                  href={item.url}
+                  title={item.name}
+                  className='text-sm duration-500 text-zinc-500 hover:text-zinc-300'
+                >
+                  {item.name}
+                </Link>
+              ) : (
+                <li key={item.order} className='text-sm text-zinc-500'>
+                  {item.name}
                 </li>
-              )}
+              )
+            )
+            : (
+              <li className='text-sm text-zinc-500'>
+                Chưa có liên kết điều hướng
+              </li>
+            )}
         </ul>
       </nav>
       <div className='hidden w-screen h-px animate-glow md:block animate-fade-left bg-gradient-to-r from-zinc-300/0 via-zinc-300/50 to-zinc-300/0' />

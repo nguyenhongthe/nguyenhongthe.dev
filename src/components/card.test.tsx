@@ -1,8 +1,8 @@
 // components/card.test.tsx
 
-import {describe, expect, test} from 'vitest'
-import {fireEvent, render, screen} from '@testing-library/react'
-import {Card} from './card'
+import { describe, expect, test } from 'vitest'
+import { fireEvent, render, screen } from '@testing-library/react'
+import { Card } from './card'
 
 describe('Card Component', () => {
 

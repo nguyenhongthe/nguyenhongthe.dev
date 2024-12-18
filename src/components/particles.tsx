@@ -1,14 +1,15 @@
+// /src/components/particles.tsx
 'use client'
 
-import React, {useEffect, useRef} from 'react'
-import {useMousePosition} from 'src/utils/mouse'
+import React, { useEffect, useRef } from 'react'
+import { useMousePosition } from 'src/utils/mouse'
 
 interface ParticlesProps {
-	className?: string;
-	quantity?: number;
-	staticity?: number;
-	ease?: number;
-	refresh?: boolean;
+  className?: string;
+  quantity?: number;
+  staticity?: number;
+  ease?: number;
+  refresh?: boolean;
 }
 
 export default function Particles({
@@ -68,17 +69,17 @@ export default function Particles({
   }
 
 	type Circle = {
-		x: number;
-		y: number;
-		translateX: number;
-		translateY: number;
-		size: number;
-		alpha: number;
-		targetAlpha: number;
-		dx: number;
-		dy: number;
-		magnetism: number;
-	};
+	  x: number;
+	  y: number;
+	  translateX: number;
+	  translateY: number;
+	  size: number;
+	  alpha: number;
+	  targetAlpha: number;
+	  dx: number;
+	  dy: number;
+	  magnetism: number;
+	}
 
 	const resizeCanvas = () => {
 	  if (canvasContainerRef.current && canvasRef.current && context.current) {
@@ -147,7 +148,7 @@ export default function Particles({
 
 	const drawParticles = () => {
 	  clearContext()
-		for (let i = 0; i < quantity; i++) {
+	  for (let i = 0; i < quantity; i++) {
 	    const circle = circleParams()
 	    drawCircle(circle)
 	  }
@@ -226,8 +227,8 @@ export default function Particles({
 	}
 
 	return (
-  <div className={className} ref={canvasContainerRef} aria-hidden='true'>
-    <canvas ref={canvasRef} />
-  </div>
+	  <div className={className} ref={canvasContainerRef} aria-hidden='true'>
+	    <canvas ref={canvasRef} />
+	  </div>
 	)
 }
