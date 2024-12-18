@@ -1,7 +1,6 @@
-// types/project.ts
-// Định nghĩa kiểu dữ liệu cho dự án
+// src/types/project.ts
 
-export type ProjectListingProps = {
+export interface ProjectListingProps {
   name: string
   slug: string
   featured: boolean
@@ -11,7 +10,7 @@ export type ProjectListingProps = {
   numViews: string
 }
 
-export type ProjectFeaturedProps = {
+export interface ProjectFeaturedProps {
   name: string
   slug: string
   featured: boolean
