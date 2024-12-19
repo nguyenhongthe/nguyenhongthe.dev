@@ -1,16 +1,45 @@
 // app/contact/page.tsx
 
-'use client'
-
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { ArrowLeft, Github, Mail, X } from 'lucide-react'
 import Link from 'next/link'
 import { Card } from '@/src/components/card'
-import type { MenuProps } from '@/src/types/listing'
-import { getMenuList } from '../../apis/menu_api'
+import type { MenuProps } from '@/src/types/common'
+import { getMenuList } from '../../apis/common_api'
 import { Footer } from '@/src/sections/project/footer'
+import type { Metadata } from 'next'
+import { defaultOgImage, siteDescription, siteName, siteUrlPrefix } from '../../../constrains'
 
-const socials = [
+export async function generateMetadata(): Promise<Metadata> {
+  const title = 'Contact' + ' - ' + siteName
+  const desc = siteDescription
+
+  return {
+    metadataBase: new URL(siteUrlPrefix),
+    title: title,
+    description: desc,
+    openGraph: {
+      title: title,
+      description: desc,
+      url: siteUrlPrefix + '/contact/',
+      type: 'website',
+      images: [defaultOgImage]
+    },
+    alternates: {
+      canonical: siteUrlPrefix + '/contact/',
+    },
+    twitter: {
+      site: '@realTheNguyen',
+      title: title,
+      description: desc,
+      card: 'summary_large_image',
+      images: [defaultOgImage]
+    },
+  }
+}
+
+
+const contactInfo = [
   {
     icon: <X size={20} />,
     href: 'https://x.com/realTheNguyen',
@@ -31,20 +60,19 @@ const socials = [
   }
 ]
 
-const Page: React.FC = () => {
-  const [navigation, setNavigation] = useState<MenuProps[]>([])
+export default async function Page() {
 
-  useEffect(() => {
-    const fetchNavigation = async() => {
-      const navList = await getMenuList()
-      setNavigation(navList)
-    }
+  let navigation: MenuProps[]
 
-    fetchNavigation().then(r => {})
-  }, [])
+  try {
+    navigation = await getMenuList()
+  } catch (error) {
+    console.error('Error fetching menu list:', error)
+    navigation = []
+  }
 
   return (
-    <div className='bg-gradient-to-tl from-zinc-900/113 via-zinc-900 to-zinc-900/0'>
+    <div className='relative min-h-screen bg-gradient-to-tl from-zinc-900 via-zinc-400/10 to-zinc-900'>
       <header>
         <div className='container flex flex-row-reverse items-center justify-between p-6 mx-auto'>
           <div className='flex justify-between gap-8'>
@@ -70,7 +98,7 @@ const Page: React.FC = () => {
       </header>
       <div className='container flex items-center justify-center min-h-screen px-4 mx-auto'>
         <div className='grid w-full grid-cols-1 gap-8 mx-auto mt-24 sm:mt-0 sm:grid-cols-3 lg:gap-16'>
-          {socials.map((s, index) => (
+          {contactInfo.map((s, index) => (
             <Card key={index}>
               <Link
                 href={s.href}
@@ -102,5 +130,3 @@ const Page: React.FC = () => {
     </div>
   )
 }
-
-export default Page
