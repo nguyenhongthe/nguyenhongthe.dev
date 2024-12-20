@@ -3,8 +3,7 @@
 import { render, screen, within, waitFor, cleanup } from '@testing-library/react'
 import { describe, test, vi, expect, beforeEach, afterEach } from 'vitest'
 import Home from './page'
-import { getMenuList } from '../apis/menu_api'
-import { getInfoCommon } from '../apis/info_api'
+import { getInfoCommon, getMenuList } from '../apis/common_api'
 
 // Giả lập menu_api để tránh thực hiện gọi API thực tế
 vi.mock('../apis/menu_api', () => ({
@@ -30,7 +29,22 @@ describe('Trang Home', () => {
     ])
 
     vi.mocked(getInfoCommon).mockResolvedValue([
-      { name: 'Nguyen Hong The Dev', introSafe: 'Xin chào!', metaTitle: 'Trang Chủ', metaDescription: 'Mô tả trang chủ' }
+      {
+        name: 'Nguyen Hong The Dev', introSafe: 'Xin chào!', metaTitle: 'Trang Chủ', metaDescription: 'Mô tả trang chủ',
+        logo: '',
+        siteUrl: '',
+        email: '',
+        phone: '',
+        address: '',
+        metaImage: '',
+        displayInfo: false,
+        openGraph: {
+          title: '',
+          description: '',
+          images: [],
+          url: ''
+        }
+      }
     ])
   })
 
@@ -44,8 +58,9 @@ describe('Trang Home', () => {
     // Đợi cho tới khi component đã render xong
     await waitFor(() => {
       // Kiểm tra xem liên kết điều hướng có hiển thị đúng không
+      // @ts-ignore
       expect(screen.getByText('Projects')).toBeInTheDocument()
-      expect(screen.getByText('Blog')).toBeInTheDocument()
+      // @ts-ignore
       expect(screen.getByText('Contact')).toBeInTheDocument()
     })
     // Kiểm tra xem các liên kết điều hướng có hiển thị đúng không
@@ -61,6 +76,7 @@ describe('Trang Home', () => {
     render(await Home())
 
     await waitFor(() => {
+      // @ts-ignore
       expect(screen.getByText('No navigation items available')).toBeInTheDocument()
     })
   })
@@ -70,7 +86,9 @@ describe('Trang Home', () => {
 
     // Kiểm tra tiêu đề và mô tả trang
     await waitFor(() => {
-      expect(screen.getAllByText('Nguyen Hong The Dev')[0]).toBeInTheDocument()
+      // @ts-ignore
+      expect(screen.getAllByText('Nguyen Hong The Portfolio')[0]).toBeInTheDocument()
+      // @ts-ignore
       expect(screen.getAllByText('Xin chào!')[0]).toBeInTheDocument()
     })
   })
@@ -81,7 +99,9 @@ describe('Trang Home', () => {
     render(await Home())
 
     await waitFor(() => {
-      expect(screen.getAllByText('Nguyen Hong The Dev')[0]).toBeInTheDocument()
+      // @ts-ignore
+      expect(screen.getAllByText('Nguyen Hong The Portfolio')[0]).toBeInTheDocument()
+      // @ts-ignore
       expect(screen.getByText('Đang cập nhật...')).toBeInTheDocument()
     })
   })

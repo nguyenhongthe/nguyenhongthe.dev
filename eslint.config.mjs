@@ -32,6 +32,7 @@ const eslintConfig = [
             ".eslintrc.cjs",
             "node_modules/*",
             "setupTests.ts",
+            "src/app/global.css"
         ],
     },
     ...compat.extends('plugin:react/recommended', 'next/core-web-vitals'),

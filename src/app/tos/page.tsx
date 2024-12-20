@@ -5,12 +5,12 @@ import type { Metadata } from 'next'
 import { ArrowLeft } from 'lucide-react'
 import Link from 'next/link'
 import { Card } from '@/src/components/card'
-import type { MenuProps } from '@/src/types/listing'
-import { getMenuList } from '../../apis/menu_api'
+import type { MenuProps } from '@/src/types/common'
+import { getMenuList } from '../../apis/common_api'
 import { Footer } from '@/src/sections/project/footer'
 import { defaultOgImage, siteUrlPrefix } from '../../../constrains'
 
-export default async function Page () {
+export default async function Page() {
 
   let navigation: MenuProps[]
 
@@ -22,7 +22,7 @@ export default async function Page () {
   }
 
   return (
-    <div className="bg-gradient-to-tl from-zinc-900/113 via-zinc-900 to-zinc-900/0">
+    <div className="relative min-h-screen bg-gradient-to-tl from-zinc-900 via-zinc-400/10 to-zinc-900">
       <header>
         <div className="container flex flex-row-reverse items-center justify-between p-6 mx-auto">
           <div className="flex justify-between gap-8">
