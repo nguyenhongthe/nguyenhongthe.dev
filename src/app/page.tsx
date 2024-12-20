@@ -5,11 +5,9 @@ import React from 'react'
 import Particles from 'src/components/particles'
 import type { Metadata } from 'next'
 import { siteDescription, siteName, siteUrlPrefix } from '../../constrains'
-import { getInfoCommon } from '../apis/info_api'
-import { type InfoProps } from 'src/types/info'
+import { getInfoCommon, getMenuList } from '../apis/common_api'
+import { type InfoProps, MenuProps } from 'src/types/common'
 import HTMLReactParser from 'html-react-parser'
-import type { MenuProps } from 'src/types/listing'
-import { getMenuList } from '../apis/menu_api'
 
 // Component trang chủ
 

@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import React from 'react'
-import type { MenuProps } from '@/src/types/listing'
-import { getMenuList } from '../../apis/menu_api'
+import type { MenuProps } from '@/src/types/common'
+import { getMenuList } from '../../apis/common_api'
 
 const HomeNav: () => Promise<React.JSX.Element> = async () => {
   const navigation: MenuProps[] = await getMenuList()
