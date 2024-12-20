@@ -12,6 +12,8 @@ import { siteName, siteUrlPrefix } from '../../../../constrains'
 import CalcViewsWrapper from '../../../sections/project/client-calc-views'
 import { Footer } from '@/src/sections/project/footer'
 
+export const runtime = 'edge'
+
 // Component trang chi tiết dự án
 type Props = {
   params: Promise<{ slug: string }>
