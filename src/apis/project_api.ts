@@ -88,3 +88,50 @@ export async function getProjectView(code: string) {
     return { success: false, error: 'Failed to calculate views' }
   }
 }
+
+/**
+ * API lấy danh sách technology từ API
+ */
+
+export async function getTechnologies() {
+  try {
+    const res = await fetch(`${baseAPIURL}/api/nhtdev/project-technology-listing/`, {
+      next: { revalidate: 60 },
+      headers: {
+        Accept: 'application/json'
+      }
+    })
+    if (!res.ok) {
+      throw new Error(`API request failed with status ${res.status}`)
+    }
+    return await res.json()
+  } catch (error) {
+    console.error('Error fetching technologies:', error)
+    return []
+  }
+}
+
+/**
+ * API lấy thông tin chi tiết technology từ API
+ */
+
+export async function getTechnologyDetail(slug: string) {
+  try {
+    const res = await fetch(
+      `${baseAPIURL}/api/nhtdev/project-technology-detail/?slug=${slug}`,
+      {
+        next: { revalidate: 60 },
+        headers: {
+          Accept: 'application/json'
+        }
+      }
+    )
+    if (!res.ok) {
+      throw new Error(`API request failed with status ${res.status}`)
+    }
+    return await res.json()
+  } catch (error) {
+    console.error('Error fetching technology detail:', error)
+    throw error
+  }
+}
