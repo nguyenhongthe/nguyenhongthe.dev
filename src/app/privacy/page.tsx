@@ -2,13 +2,12 @@
 
 import React from 'react'
 import type { Metadata } from 'next'
-import { ArrowLeft } from 'lucide-react'
-import Link from 'next/link'
 import { Card } from '@/src/components/card'
 import type { MenuProps } from '@/src/types/common'
 import { getMenuList } from '../../apis/common_api'
 import { Footer } from '@/src/sections/project/footer'
 import { defaultOgImage, siteUrlPrefix } from '../../../constrains'
+import Navigation from '@/src/components/Navigation'
 
 export default async function Page() {
 
@@ -24,27 +23,7 @@ export default async function Page() {
   return (
     <div className='relative min-h-screen bg-gradient-to-tl from-zinc-900 via-zinc-400/10 to-zinc-900'>
       <header>
-        <div className='container flex flex-row-reverse items-center justify-between p-6 mx-auto'>
-          <div className='flex justify-between gap-8'>
-            {navigation.map((item) => (
-              <Link
-                key={item.order}
-                href={item.url}
-                title={item.name}
-                className='text-sm duration-500 text-zinc-500 hover:text-zinc-300'
-              >
-                {item.name}
-              </Link>
-            ))}
-          </div>
-
-          <Link
-            href='/'
-            className='duration-200 text-zinc-300 hover:text-zinc-100'
-          >
-            <ArrowLeft className='w-6 h-6 ' />
-          </Link>
-        </div>
+        <Navigation navigation={navigation} />
       </header>
       <div className='px-6 pt-20 mx-auto space-y-8 max-w-7xl lg:px-8 md:space-y-16 md:pt-24 lg:pt-32 lg:pb-24'>
 
