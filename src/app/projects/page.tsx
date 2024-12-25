@@ -43,9 +43,9 @@ export default async function ProjectsPage() {
         new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime()
     )
   return (
-    <div className='relative pb-16'>
+    <div className='relative pb-5'>
       <header>
-        <Navigation navigation={navigation} />
+        <Navigation navigation={navigation}/>
       </header>
 
       <div className='px-6 pt-20 mx-auto space-y-8 max-w-7xl lg:px-8 md:space-y-16 md:pt-24 lg:pt-32'>
@@ -58,7 +58,7 @@ export default async function ProjectsPage() {
           </p>
         </div>
 
-        <div className='w-full h-px bg-zinc-800' />
+        <div className='w-full h-px bg-zinc-800'/>
 
         {/* Featured Projects Section */}
         <div className='grid grid-cols-1 gap-8 mx-auto lg:grid-cols-2'>
@@ -134,7 +134,11 @@ export default async function ProjectsPage() {
           ))}
         </div>
       </div>
-      <Footer />
+
+      <footer className="relative bottom-0 z-50">
+        <Footer/>
+      </footer>
+
     </div>
   )
 }

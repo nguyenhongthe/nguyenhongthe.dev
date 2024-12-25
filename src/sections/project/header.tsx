@@ -4,14 +4,12 @@
 
 import { Eye, Home } from 'lucide-react'
 import Link from 'next/link'
-import React, { useRef } from 'react'
+import React from 'react'
 import HTMLReactParser from 'html-react-parser'
 import { type TechnologyProps } from '@/src/types/project'
-import useIntersectionObserver from '@/src/hooks/useIntersectionObserver'
 import { siteUrlPrefix } from '../../../constrains'
 import { formatDate } from '@/src/utils/common'
-import type { MenuProps } from '@/src/types/common'
-import { getMenuList } from '@/src/apis/common_api'
+import { useNavigation } from '@/src/hooks/useNavigation'
 
 interface Props {
   project: {
@@ -26,19 +24,8 @@ interface Props {
   views: number;
 }
 
-let navigation: MenuProps[]
-
-try {
-  navigation = await getMenuList()
-} catch (error) {
-  console.error('Error fetching menu list:', error)
-  navigation = []
-}
-
 export const Header: React.FC<Props> = ({ project, views }) => {
-  const ref = useRef<HTMLElement>(null)
-  // @ts-ignore
-  const isIntersecting = useIntersectionObserver(ref)
+  const { ref, isIntersecting, navigation } = useNavigation()
 
   const links: { label: string; href: string }[] = []
   if (project.source) {
