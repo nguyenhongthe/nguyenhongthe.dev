@@ -1,15 +1,9 @@
 // /src/app/layout.tsx
 
 import './global.css'
-import { Inter } from 'next/font/google'
 import LocalFont from 'next/font/local'
 import type { Metadata } from 'next'
-import {
-  defaultOgImage,
-  siteDescription,
-  siteName,
-  siteUrlPrefix,
-} from '../../constrains'
+import { defaultOgImage, siteDescription, siteName, siteUrlPrefix, } from '../../constrains'
 import React from 'react'
 
 export const metadata: Metadata = {
@@ -70,10 +64,6 @@ export const metadata: Metadata = {
 			'https://nguyenhongthe.net/content/images/size/w256h256/2020/05/favicon-1.png'
   }
 }
-const inter = Inter({
-  subsets: ['latin'],
-  variable: '--font-inter'
-})
 
 const calSans = LocalFont({
   src: '../../public/fonts/CalSans-SemiBold.ttf',
@@ -93,7 +83,7 @@ export default function RootLayout({
   return (
     <html
       lang='en'
-      className={[inter.variable, calSans.variable, manrope.variable].join(' ')}
+      className={[manrope.variable, calSans.variable].join(' ')}
     >
       <body
         className={`bg-black ${process.env.NODE_ENV === 'development' ? 'debug-screens' : undefined

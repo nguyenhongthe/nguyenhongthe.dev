@@ -1,4 +1,4 @@
-// dayjs-flexible-ago.test.tsx
+// src/components/dayjs-flexible-ago.test.tsx
 
 import { describe, expect, test, vi } from 'vitest'
 import { render, screen } from '@testing-library/react'
@@ -9,7 +9,7 @@ import dayjs from 'dayjs'
 vi.useFakeTimers().setSystemTime(new Date('2024-12-01T10:00:00.000Z'))
 
 describe('DayjsFlexibleAgo Component', () => {
-  test('hiển thị thời gian trong vòng 5 phút kể từ bây giờ', () => {
+  test('hiển thị thời gian trong vòng 5 phút kể từ bây giờ', () => {
     const recentDate = dayjs().subtract(5, 'minute').toISOString() // 5 phút trước
     render(<DayjsFlexibleAgo dateStr={recentDate} />)
 

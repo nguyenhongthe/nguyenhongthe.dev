@@ -1,4 +1,4 @@
-// components/dayjs-format.test.tsx
+// src/components/dayjs-format.test.tsx
 
 import { describe, expect, test } from 'vitest'
 import { render, screen } from '@testing-library/react'

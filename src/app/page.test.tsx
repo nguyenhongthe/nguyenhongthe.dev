@@ -1,4 +1,4 @@
-// app/page.tesst.tsx
+// src/app/page.tesst.tsx
 
 import { render, screen, within, waitFor, cleanup } from '@testing-library/react'
 import { describe, test, vi, expect, beforeEach, afterEach } from 'vitest'
