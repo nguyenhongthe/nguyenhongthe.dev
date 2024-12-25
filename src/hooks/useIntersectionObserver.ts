@@ -1,12 +1,12 @@
 // src/hooks/useIntersectionObserver.ts
 
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState, RefObject } from 'react'
 
-const useIntersectionObserver = (targetRef: React.RefObject<HTMLElement>) => {
+const useIntersectionObserver = (targetRef: RefObject<HTMLElement>) => {
   const [isIntersecting, setIntersecting] = useState<boolean>(true)
 
   useEffect(() => {
-    if (!targetRef.current) return
+    if (!targetRef.current) return // Kiểm tra nếu `ref.current` là null
 
     const observer = new IntersectionObserver(([entry]) =>
       setIntersecting(entry.isIntersecting)
