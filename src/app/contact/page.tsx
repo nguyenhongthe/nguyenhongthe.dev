@@ -1,44 +1,17 @@
 // app/contact/page.tsx
 
 import React from 'react'
-import { ArrowLeft, Github, Mail, X } from 'lucide-react'
-import Link from 'next/link'
+import { Github, Mail, X } from 'lucide-react'
+import type { Metadata } from 'next'
 import { Card } from '@/src/components/card'
 import type { MenuProps } from '@/src/types/common'
 import { getMenuList } from '../../apis/common_api'
 import { Footer } from '@/src/sections/project/footer'
-import type { Metadata } from 'next'
 import { defaultOgImage, siteDescription, siteName, siteUrlPrefix } from '../../../constrains'
+import Navigation from '@/src/components/Navigation'
+import Link from 'next/link'
 
-export async function generateMetadata(): Promise<Metadata> {
-  const title = 'Contact' + ' - ' + siteName
-  const desc = siteDescription
-
-  return {
-    metadataBase: new URL(siteUrlPrefix),
-    title: title,
-    description: desc,
-    openGraph: {
-      title: title,
-      description: desc,
-      url: siteUrlPrefix + '/contact/',
-      type: 'website',
-      images: [defaultOgImage]
-    },
-    alternates: {
-      canonical: siteUrlPrefix + '/contact/',
-    },
-    twitter: {
-      site: '@realTheNguyen',
-      title: title,
-      description: desc,
-      card: 'summary_large_image',
-      images: [defaultOgImage]
-    },
-  }
-}
-
-
+// Contact information
 const contactInfo = [
   {
     icon: <X size={20} />,
@@ -61,6 +34,7 @@ const contactInfo = [
 ]
 
 export default async function Page() {
+
   let navigation: MenuProps[]
 
   try {
@@ -72,31 +46,11 @@ export default async function Page() {
 
   return (
     <div className='flex flex-col min-h-screen bg-gradient-to-tl from-zinc-900 via-zinc-400/10 to-zinc-900'>
-      {/* Header */}
+
       <header>
-        <div className='container flex flex-row-reverse items-center justify-between p-6 mx-auto'>
-          <div className='flex justify-between gap-8'>
-            {navigation.map((item) => (
-              <Link
-                key={item.order}
-                href={item.url}
-                title={item.name}
-                className='text-sm duration-500 text-zinc-500 hover:text-zinc-300'
-              >
-                {item.name}
-              </Link>
-            ))}
-          </div>
-          <Link
-            href='/'
-            className='duration-200 text-zinc-300 hover:text-zinc-100'
-          >
-            <ArrowLeft className='w-6 h-6 '/>
-          </Link>
-        </div>
+        <Navigation navigation={navigation}/>
       </header>
 
-      {/* Main Content - flex-grow để chiếm không gian còn lại */}
       <main className='flex-grow container flex flex-col items-center justify-center px-4 mx-auto text-center'>
         {/* Title */}
         <h1 className='text-4xl font-bold text-white sm:text-2xl lg:text-4xl mb-8'>
@@ -143,9 +97,38 @@ export default async function Page() {
         </div>
       </main>
 
+      <footer className="relative bottom-0 z-50">
+        <Footer/>
+      </footer>
 
-      {/* Footer */}
-      <Footer/>
     </div>
   )
+}
+
+export async function generateMetadata(): Promise<Metadata> {
+  const title = 'Contact' + ' - ' + siteName
+  const desc = siteDescription
+
+  return {
+    metadataBase: new URL(siteUrlPrefix),
+    title: title,
+    description: desc,
+    openGraph: {
+      title: title,
+      description: desc,
+      url: siteUrlPrefix + '/contact/',
+      type: 'website',
+      images: [defaultOgImage]
+    },
+    alternates: {
+      canonical: siteUrlPrefix + '/contact/',
+    },
+    twitter: {
+      site: '@realTheNguyen',
+      title: title,
+      description: desc,
+      card: 'summary_large_image',
+      images: [defaultOgImage]
+    },
+  }
 }

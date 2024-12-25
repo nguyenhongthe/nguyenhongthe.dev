@@ -10,16 +10,6 @@ export interface ProjectListingProps {
   numViews: string
 }
 
-export interface ProjectFeaturedProps {
-  name: string
-  slug: string
-  featured: boolean
-  excerptSafe: string
-  publishedAt: string
-  fullUrl: string
-  numViews: string
-}
-
 export interface ProjectDetailProps {
   code: string
   name: string
@@ -85,4 +75,5 @@ export interface TechnologyDetailProps {
     images: string[]
     url: string
   }
+  projects: ProjectListingProps[]
 }
