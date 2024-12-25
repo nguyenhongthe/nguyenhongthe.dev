@@ -1,22 +1,25 @@
+// src/app/projects/page.tsx
+
 import Link from 'next/link'
 import React from 'react'
 import type { Metadata } from 'next'
-import { siteDescription, defaultOgImage, siteUrlPrefix } from '../../../constrains'
-import { type ProjectFeaturedProps, ProjectListingProps } from '../../types/project'
+import { defaultOgImage, siteDescription, siteUrlPrefix } from '../../../constrains'
+import { ProjectListingProps } from '../../types/project'
 import { Card } from '../../components/card'
 import { Article } from './article'
-import { ArrowLeft, Eye } from 'lucide-react'
+import { Eye } from 'lucide-react'
 import { getProjectsFeatured, getProjectsListing } from '../../apis/project_api'
 import { type MenuProps } from '../../types/common'
 import { getMenuList } from '../../apis/common_api'
 import DayjsFlexibleAgo from '@/src/components/dayjs-flexible-ago'
 import HTMLReactParser from 'html-react-parser'
 import { Footer } from '@/src/sections/project/footer'
+import Navigation from '@/src/components/Navigation'
 
 export default async function ProjectsPage() {
   const navigation: MenuProps[] = await getMenuList()
   const projectListing: ProjectListingProps[] = await getProjectsListing()
-  const projectFeatured: ProjectFeaturedProps[] = await getProjectsFeatured()
+  const projectFeatured: ProjectListingProps[] = await getProjectsFeatured()
 
   // Sắp xếp featured projects theo thời gian mới nhất
   const sortedFeatured = projectFeatured
@@ -40,29 +43,9 @@ export default async function ProjectsPage() {
         new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime()
     )
   return (
-    <div className='relative pb-16'>
+    <div className='relative pb-5'>
       <header>
-        <div className='container flex flex-row-reverse items-center justify-between p-6 mx-auto'>
-          <div className='flex justify-between gap-8'>
-            {navigation.map((item) => (
-              <Link
-                key={item.order}
-                href={item.url}
-                title={item.name}
-                className='text-sm duration-500 text-zinc-500 hover:text-zinc-300'
-              >
-                {item.name}
-              </Link>
-            ))}
-          </div>
-
-          <Link
-            href='/'
-            className='duration-200 text-zinc-300 hover:text-zinc-100'
-          >
-            <ArrowLeft className='w-6 h-6' />
-          </Link>
-        </div>
+        <Navigation navigation={navigation}/>
       </header>
 
       <div className='px-6 pt-20 mx-auto space-y-8 max-w-7xl lg:px-8 md:space-y-16 md:pt-24 lg:pt-32'>
@@ -75,7 +58,7 @@ export default async function ProjectsPage() {
           </p>
         </div>
 
-        <div className='w-full h-px bg-zinc-800' />
+        <div className='w-full h-px bg-zinc-800'/>
 
         {/* Featured Projects Section */}
         <div className='grid grid-cols-1 gap-8 mx-auto lg:grid-cols-2'>
@@ -151,7 +134,11 @@ export default async function ProjectsPage() {
           ))}
         </div>
       </div>
-      <Footer />
+
+      <footer className="relative bottom-0 z-50">
+        <Footer/>
+      </footer>
+
     </div>
   )
 }
