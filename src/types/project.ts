@@ -5,6 +5,7 @@ export interface ProjectListingProps {
   slug: string
   featured: boolean
   excerptSafe: string
+  projectStatus: string
   publishedAt: string
   fullUrl: string
   numViews: string
@@ -38,6 +39,7 @@ export interface ProjectDetailProps {
   metaTitle: string
   metaDescription: string
   metaImage: string
+  projectStatus: string
   publishedAt: string
   url: string
   fullUrl: string

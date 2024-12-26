@@ -8,18 +8,19 @@ import React from 'react'
 import HTMLReactParser from 'html-react-parser'
 import { type TechnologyProps } from '@/src/types/project'
 import { siteUrlPrefix } from '../../../constrains'
-import { formatDate } from '@/src/utils/common'
+import { formatDate, getProjectStatus } from '@/src/utils/common'
 import { useNavigation } from '@/src/hooks/useNavigation'
 
 interface Props {
   project: {
-    technology: TechnologyProps[];
-    projectUrl: string;
-    name: string;
-    descriptionSafe: string;
-    publishedAt: string;
-    source: string;
-  };
+    technology: TechnologyProps[]
+    projectUrl: string
+    name: string
+    descriptionSafe: string
+    projectStatus: string
+    publishedAt: string
+    source: string
+  }
 
   views: number;
 }
@@ -100,9 +101,13 @@ export const Header: React.FC<Props> = ({ project, views }) => {
       <div className='container mx-auto relative isolate overflow-hidden  py-24 sm:py-32'>
         <div className='mx-auto max-w-7xl px-6 lg:px-8 text-center flex flex-col items-center'>
           <div className='mx-auto max-w-2xl lg:mx-0'>
-            <h1 className='text-4xl font-bold tracking-tight text-white sm:text-6xl font-display'>
+            <h1 className='text-4xl font-bold tracking-tight text-white sm:text-5xl font-display'>
               {project.name}
             </h1>
+            <span
+              className="mt-6 inline-flex items-center rounded-md bg-blue-50 px-2 py-1 text-xl font-medium text-blue-700 ring-1 ring-inset ring-blue-700/10">
+              {getProjectStatus(project.projectStatus)}
+            </span>
             <div className='mt-6 text-lg leading-8 text-zinc-300'>
               {project.descriptionSafe.length > 0
                 ? HTMLReactParser(project.descriptionSafe || '')
