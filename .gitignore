@@ -46,3 +46,6 @@ next-env.d.ts
 nginx.local.conf
 /.fleet/
 /with-next-translate-app/
+
+# vscode
+.idea/

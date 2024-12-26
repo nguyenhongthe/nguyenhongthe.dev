@@ -73,3 +73,17 @@ export const formatDate = (dateString: string) => {
 		year: 'numeric'
 	})
 }
+
+// Hàm lấy trạng thái dự án
+export function getProjectStatus (projectStatus: string) {
+	switch (projectStatus) {
+		case 'in_progess':
+			return 'In Progress'
+		case 'done':
+			return 'Completed'
+		case 'cancelled':
+			return 'Canceled'
+		default:
+			return 'Không xác định'
+	}
+}
